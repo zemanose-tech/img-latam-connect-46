@@ -15,6 +15,9 @@ import soccerImage from "@/assets/soccer-facilities.jpg";
 import lacrosseImage from "@/assets/lacrosse-facilities.jpg";
 import trackImage from "@/assets/track-facilities.jpg";
 import wrestlingImage from "@/assets/wrestling-facilities.jpg";
+import volleyballImage from "@/assets/volleyball-facilities.jpg";
+import performanceImage from "@/assets/performance-facilities.jpg";
+import softballImage from "@/assets/softball-facilities.jpg";
 const sportsPrograms = [{
   id: "tennis",
   name: "Tenis",
@@ -63,6 +66,24 @@ const sportsPrograms = [{
   description: "Entrenamiento en pista y campo para todas las disciplinas",
   image: trackImage,
   highlights: ["Pista de 400m", "Zona de saltos", "Lanzamientos", "Preparación olímpica"]
+}, {
+  id: "volleyball",
+  name: "Voleibol",
+  description: "Programa integral de voleibol con técnicas avanzadas y trabajo en equipo",
+  image: volleyballImage,
+  highlights: ["Canchas cubiertas", "Entrenamiento técnico", "Trabajo en equipo", "Competencias universitarias"]
+}, {
+  id: "performance",
+  name: "Performance",
+  description: "Entrenamiento de alto rendimiento para optimizar el desempeño atlético",
+  image: performanceImage,
+  highlights: ["Análisis biomecánico", "Preparación física", "Recuperación deportiva", "Nutrición especializada"]
+}, {
+  id: "softball",
+  name: "Softball",
+  description: "Desarrollo completo en softball con enfoque en habilidades específicas",
+  image: softballImage,
+  highlights: ["Diamantes especializados", "Técnica de bateo", "Pitcheo femenino", "Estrategia de juego"]
 }];
 const Sports = () => {
   return <div className="min-h-screen bg-background text-foreground">
