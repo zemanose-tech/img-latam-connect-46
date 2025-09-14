@@ -17,6 +17,9 @@ import soccerImage from "@/assets/soccer-facilities.jpg";
 import lacrosseImage from "@/assets/lacrosse-facilities.jpg";
 import trackImage from "@/assets/track-facilities.jpg";
 import wrestlingImage from "@/assets/wrestling-facilities.jpg";
+import volleyballImage from "@/assets/volleyball-facilities.jpg";
+import performanceImage from "@/assets/performance-facilities.jpg";
+import softballImage from "@/assets/softball-facilities.jpg";
 
 const sportDetails = {
   tennis: {
@@ -224,7 +227,76 @@ const sportDetails = {
       morning: "6:00-8:00 AM - Technique practice",
       midday: "1:00-2:30 PM - Live wrestling",
       afternoon: "4:00-5:30 PM - Strength training"
+  },
+  volleyball: {
+    name: "Voleibol",
+    hero: volleyballImage,
+    description: "Programa integral de voleibol con técnicas avanzadas de ataque, defensa y trabajo en equipo para competir al más alto nivel.",
+    highlights: ["Canchas cubiertas profesionales", "Entrenamiento técnico especializado", "Desarrollo de trabajo en equipo", "Competencias universitarias"],
+    programs: [
+      { name: "Volleyball Academy", duration: "Año académico", ages: "14-18 años", price: "$40,000" },
+      { name: "Skills Training", duration: "Todo el año", ages: "12-18 años", price: "$21,000" },
+      { name: "Volleyball Camps", duration: "1-2 semanas", ages: "10-18 años", price: "$1,550/semana" }
+    ],
+    facilities: [
+      "4 canchas de voleibol cubiertas",
+      "Cancha principal con gradas",
+      "Área de entrenamiento técnico",
+      "Centro de preparación física",
+      "Sala de análisis de video"
+    ],
+    schedule: {
+      morning: "7:00-9:00 AM - Técnica individual",
+      midday: "1:00-3:00 PM - Práctica de equipo",
+      afternoon: "4:00-5:30 PM - Preparación física"
     }
+  },
+  performance: {
+    name: "Performance",
+    hero: performanceImage,
+    description: "Programa de alto rendimiento deportivo enfocado en optimizar el desempeño atlético a través de ciencia deportiva y tecnología avanzada.",
+    highlights: ["Análisis biomecánico avanzado", "Preparación física científica", "Recuperación deportiva", "Nutrición especializada"],
+    programs: [
+      { name: "Elite Performance Program", duration: "Año académico", ages: "15-18 años", price: "$50,000" },
+      { name: "Performance Training", duration: "Todo el año", ages: "13-18 años", price: "$32,000" },
+      { name: "Performance Camps", duration: "2-3 semanas", ages: "14-18 años", price: "$4,500/semana" }
+    ],
+    facilities: [
+      "Laboratorio de biomecánica",
+      "Centro de alto rendimiento",
+      "Piscina de recuperación",
+      "Cámaras de crioterapia",
+      "Laboratorio nutricional"
+    ],
+    schedule: {
+      morning: "6:00-8:00 AM - Evaluaciones físicas",
+      midday: "12:00-2:00 PM - Entrenamiento especializado",
+      afternoon: "3:00-5:00 PM - Recuperación y análisis"
+    }
+  },
+  softball: {
+    name: "Softball",
+    hero: softballImage,
+    description: "Programa completo de softball femenino con énfasis en técnicas específicas de bateo, pitcheo y estrategia de juego.",
+    highlights: ["Diamantes especializados", "Técnica de bateo avanzada", "Pitcheo femenino especializado", "Estrategia de juego moderna"],
+    programs: [
+      { name: "Softball Academy", duration: "Año académico", ages: "14-18 años", price: "$43,500" },
+      { name: "Skills Development", duration: "Todo el año", ages: "12-18 años", price: "$23,000" },
+      { name: "Softball Camps", duration: "1-2 semanas", ages: "10-18 años", price: "$1,750/semana" }
+    ],
+    facilities: [
+      "3 diamantes de softball",
+      "8 jaulas de bateo especializadas",
+      "Área de pitcheo cubierto",
+      "Centro de preparación física",
+      "Sala de análisis táctico"
+    ],
+    schedule: {
+      morning: "7:00-9:30 AM - Práctica en el campo",
+      midday: "1:00-2:30 PM - Bateo y pitcheo",
+      afternoon: "3:30-5:00 PM - Juegos de práctica"
+    }
+  }
   }
 };
 
