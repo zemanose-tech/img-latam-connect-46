@@ -37,14 +37,6 @@ const HeroSection = () => {
                     alt={image.alt}
                     className="h-full w-full object-cover" 
                   />
-                  {/* Logo overlay with transparency */}
-                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                    <img 
-                      src={logoWhite}
-                      alt="IMG Academy Logo"
-                      className="w-64 h-auto opacity-80 drop-shadow-2xl"
-                    />
-                  </div>
                 </div>
               </CarouselItem>
             ))}
