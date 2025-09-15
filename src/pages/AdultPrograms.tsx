@@ -58,19 +58,21 @@ Los programas están disponibles durante todo el año, con opciones de intensida
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       <main className="pt-20">
-        {/* Hero Section with Carousel */}
-        <section className="relative">
-          <AutoScrollCarousel images={carouselImages} />
-          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <div className="text-center text-white px-4">
-              <h1 className="text-4xl md:text-6xl font-bold mb-4">
-                Programas de Adultos
-              </h1>
-              <p className="text-xl md:text-2xl max-w-3xl mx-auto">
-                Entrenamiento de élite diseñado para atletas adultos
-              </p>
-            </div>
+        {/* Hero Section */}
+        <section className="bg-gradient-to-r from-primary to-primary/80 text-white py-16">
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              Programas de Adultos
+            </h1>
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto">
+              Entrenamiento de élite diseñado para atletas adultos
+            </p>
           </div>
+        </section>
+
+        {/* Carousel Section */}
+        <section className="py-8">
+          <AutoScrollCarousel images={carouselImages} />
         </section>
 
         {/* Program Description */}
