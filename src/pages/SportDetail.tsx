@@ -27,278 +27,103 @@ const sportDetails = {
   tennis: {
     name: "Tenis",
     hero: tennisImage,
-    description: "Nuestro programa de tenis de élite combina entrenamiento técnico avanzado con preparación física especializada para desarrollar jugadores de clase mundial.",
-    highlights: ["12 canchas de tenis profesionales", "Entrenadores certificados ATP/WTA", "Análisis de video biomecánico", "Preparación física especializada"],
-    programs: [
-      { name: "Programa Anual", duration: "10 meses", ages: "14-18 años", price: "$45,000" },
-      { name: "Campamentos de Verano", duration: "2-4 semanas", ages: "12-18 años", price: "$3,500/semana" },
-      { name: "Entrenamientos Personalizados", duration: "Flexible", ages: "Todas las edades", price: "$150/hora" }
-    ],
-    facilities: [
-      "12 canchas de tenis Hard Court",
-      "4 canchas de arcilla",
-      "Centro de fitness especializado",
-      "Sala de análisis de video",
-      "Área de recuperación y fisioterapia"
-    ],
-    schedule: {
-      morning: "6:00-9:00 AM - Entrenamiento en cancha",
-      midday: "12:00-2:00 PM - Preparación física",
-      afternoon: "3:00-5:00 PM - Práctica táctica y juegos"
-    }
+    description: `El programa de tenis de IMG Academy se ha construido sobre más de 40 años de resultados comprobados, con un modelo de desarrollo inigualable que marcó el estándar para academias de tenis en todo el mundo.
+
+La magnitud y profundidad de nuestro programa crean un entorno dinámico y completo, donde siempre encontrarás a otro jugador que te rete y eleve tu nivel, gracias a la diversidad de estilos de juego.
+
+Cada día, los estudiantes-atletas reciben entrenamiento diseñado para avanzar en todas las áreas: técnica, táctica, preparación física y fortaleza mental.`
   },
   golf: {
     name: "Golf",
     hero: golfImage,
-    description: "Nuestro programa de golf cuenta con un campo de 18 hoyos diseñado específicamente para el desarrollo de golfistas de élite.",
-    highlights: ["Campo de 18 hoyos profesional", "Driving range de 300 yardas", "Short game area completo", "Tecnología TrackMan"],
-    programs: [
-      { name: "Programa de Boarding School", duration: "Año académico", ages: "14-18 años", price: "$55,000" },
-      { name: "Campamentos de Golf", duration: "1-2 semanas", ages: "10-18 años", price: "$2,800/semana" },
-      { name: "Academy Day Program", duration: "Después de clases", ages: "12-18 años", price: "$25,000/año" }
-    ],
-    facilities: [
-      "Campo de golf de 18 hoyos",
-      "Driving range de 300 yardas",
-      "Putting green de práctica",
-      "Short game area",
-      "Simuladores de golf indoor"
-    ],
-    schedule: {
-      morning: "7:00-10:00 AM - Práctica en el campo",
-      midday: "1:00-3:00 PM - Short game y putting",
-      afternoon: "4:00-6:00 PM - Rondas de práctica"
-    }
+    description: `Los mejores golfistas del mundo saben que el verdadero potencial se alcanza con un desarrollo integral. Por eso, en IMG Academy ponemos el foco en los aspectos físicos, mentales, técnicos y en la estrategia de campo, lo que convierte a nuestros campamentos de golf en los mejores del país.
+
+Con una metodología de instrucción probada, los golfistas de IMG Academy se convierten en jugadores más completos, seguros y competitivos.
+
+Nuestros campamentos están dirigidos a jóvenes de 8 a 18 años, con programas personalizables para todos los niveles de habilidad y disponibilidad durante todo el año, adaptándose a tu calendario.`
   },
   football: {
     name: "Fútbol Americano",
     hero: footballImage,
-    description: "Programa integral de fútbol americano diseñado para preparar atletas para el siguiente nivel universitario.",
-    highlights: ["Campo de práctica profesional", "Sala de pesas de élite", "Análisis táctico avanzado", "Preparación para becas universitarias"],
-    programs: [
-      { name: "Post-Graduate Program", duration: "1 año", ages: "18-19 años", price: "$48,000" },
-      { name: "High School Program", duration: "Año académico", ages: "14-18 años", price: "$52,000" },
-      { name: "Summer Training", duration: "6-8 semanas", ages: "14-19 años", price: "$8,500" }
-    ],
-    facilities: [
-      "Campo de fútbol americano profesional",
-      "Sala de pesas de 10,000 sq ft",
-      "Sala de video y análisis táctico",
-      "Pista de velocidad de 40 yardas",
-      "Centro de recuperación"
-    ],
-    schedule: {
-      morning: "6:00-8:00 AM - Preparación física",
-      midday: "2:00-4:00 PM - Práctica en el campo",
-      afternoon: "5:00-6:00 PM - Análisis de video"
-    }
+    description: `Hay una razón por la que el programa de fútbol americano de IMG Academy es reconocido como el mejor del país. Entrenadores de élite y una metodología de entrenamiento comprobada hacen posible que cada atleta maximice su potencial.
+
+Este mismo enfoque convierte a los campamentos de fútbol americano de IMG en líderes de la industria para todas las posiciones, con un entrenamiento centrado en el desarrollo integral del jugador.
+
+Dirigidos a jóvenes de 10 a 18 años, nuestros campamentos ofrecen programas personalizables para todos los niveles y están disponibles durante todo el año, adaptándose a tu calendario.`
   },
   basketball: {
     name: "Baloncesto",
     hero: basketballImage,
-    description: "Desarrollo integral de habilidades de baloncesto con enfoque en fundamentals y juego avanzado.",
-    highlights: ["Gimnasios de práctica profesionales", "Entrenamiento de skills individual", "Scrimmages competitivos", "Desarrollo del juego mental"],
-    programs: [
-      { name: "Prep Program", duration: "Año académico", ages: "15-19 años", price: "$46,000" },
-      { name: "Skills Academy", duration: "Todo el año", ages: "13-18 años", price: "$28,000" },
-      { name: "Elite Camps", duration: "1-2 semanas", ages: "12-18 años", price: "$1,850/semana" }
-    ],
-    facilities: [
-      "3 gimnasios de práctica",
-      "Cancha principal con gradas",
-      "Área de entrenamiento individual",
-      "Centro de preparación física",
-      "Sala de análisis de video"
-    ],
-    schedule: {
-      morning: "7:00-9:00 AM - Skills training",
-      midday: "1:00-3:00 PM - Team practice",
-      afternoon: "4:00-5:30 PM - Strength training"
-    }
+    description: `No importa tu nivel de habilidad, en IMG Academy encontrarás un campamento de baloncesto diseñado para alcanzar tus metas. Nuestros programas incluyen opciones de entrenamiento personalizado y especializaciones enfocadas en áreas clave como el rendimiento mental o el liderazgo.
+
+Guiados por entrenadores de talla mundial, en un campus integral de primer nivel, los campamentos de verano de baloncesto de IMG Academy combinan entrenamientos en grupo, trabajo de habilidades específicas por posición y escenarios de juego reales para llevar tu desempeño al siguiente nivel.`
   },
   baseball: {
     name: "Béisbol",
     hero: baseballImage,
-    description: "Programa completo de béisbol con enfoque en todas las posiciones y desarrollo de lanzadores.",
-    highlights: ["Diamantes de práctica profesionales", "Jaulas de bateo cubiertas", "Análisis biomecánico", "Desarrollo especializado de pitchers"],
-    programs: [
-      { name: "Academy Program", duration: "Año académico", ages: "14-18 años", price: "$47,000" },
-      { name: "Summer Baseball", duration: "8-10 semanas", ages: "13-18 años", price: "$6,500" },
-      { name: "Pitching Academy", duration: "Todo el año", ages: "14-19 años", price: "$30,000" }
-    ],
-    facilities: [
-      "4 diamantes de béisbol",
-      "12 jaulas de bateo cubiertas",
-      "Área de bullpen",
-      "Laboratorio biomecánico",
-      "Centro de recuperación"
-    ],
-    schedule: {
-      morning: "7:00-10:00 AM - Practice on field",
-      midday: "1:00-2:30 PM - Batting practice",
-      afternoon: "3:30-5:00 PM - Position training"
-    }
+    description: `El programa de béisbol de IMG Academy ofrece una metodología integral para formar al estudiante-atleta completo. Los jugadores acceden a instalaciones y equipos de última generación, entrenadores inigualables, acompañamiento constante y una comunidad apasionada y motivadora.
+
+Con múltiples equipos organizados por edad y nivel de habilidad, cada atleta comprometido encuentra la oportunidad perfecta para maximizar su potencial y llevar su juego al siguiente nivel.`
   },
   soccer: {
     name: "Fútbol",
     hero: soccerImage,
-    description: "Entrenamiento técnico y táctico del fútbol moderno con preparación para el siguiente nivel.",
-    highlights: ["Campos de césped natural", "Entrenamiento táctico avanzado", "Preparación física específica", "Scout universitario"],
-    programs: [
-      { name: "Soccer Academy", duration: "Año académico", ages: "14-18 años", price: "$43,000" },
-      { name: "Elite Training", duration: "Todo el año", ages: "12-18 años", price: "$26,000" },
-      { name: "Soccer Camps", duration: "1-2 semanas", ages: "10-18 años", price: "$1,650/semana" }
-    ],
-    facilities: [
-      "6 campos de fútbol de césped natural",
-      "2 campos sintéticos",
-      "Centro de fitness específico",
-      "Sala de análisis táctico",
-      "Área de recuperación"
-    ],
-    schedule: {
-      morning: "7:00-9:30 AM - Technical training",
-      midday: "1:00-3:00 PM - Tactical practice",
-      afternoon: "4:00-5:30 PM - Physical preparation"
-    }
+    description: `Los campamentos de fútbol de IMG Academy son los mejores del país en entrenamiento y desarrollo. Con la instrucción experta de entrenadores de primer nivel y una metodología comprobada que ha formado a múltiples jugadores de la MLS y a innumerables atletas de División I, nuestros campamentos están diseñados para perfeccionar cada aspecto de tu juego.
+
+Dirigidos a jóvenes de 10 a 18 años, los programas son totalmente personalizables y están disponibles durante todo el año, ajustándose a tu calendario y necesidades.`
   },
   lacrosse: {
     name: "Lacrosse",
     hero: lacrosseImage,
-    description: "Desarrollo completo en lacrosse masculino y femenino con técnicas avanzadas.",
-    highlights: ["Campos especializados", "Técnica avanzada", "Estrategia de juego", "Preparación universitaria"],
-    programs: [
-      { name: "Lacrosse Academy", duration: "Año académico", ages: "14-18 años", price: "$44,000" },
-      { name: "Skills Development", duration: "Todo el año", ages: "12-18 años", price: "$24,000" },
-      { name: "Summer Lacrosse", duration: "4-6 semanas", ages: "11-18 años", price: "$4,200" }
-    ],
-    facilities: [
-      "4 campos de lacrosse",
-      "Wall ball practice area",
-      "Centro de fitness",
-      "Sala de video",
-      "Equipment room"
-    ],
-    schedule: {
-      morning: "7:00-9:00 AM - Skills practice",
-      midday: "1:30-3:30 PM - Team practice",
-      afternoon: "4:00-5:00 PM - Strength training"
-    }
+    description: `Los campamentos de lacrosse de IMG Academy representan el mejor programa de entrenamiento del país. Gracias a la combinación de entrenamiento específico por posición, conceptos de equipo aplicados en situaciones reales de juego y un enfoque integral de desarrollo, cada atleta encuentra aquí la oportunidad de llevar su rendimiento al máximo nivel.
+
+Dirigidos a jóvenes de 10 a 18 años, nuestros campamentos ofrecen programas personalizables para todos los niveles de habilidad y están disponibles durante todo el año, adaptándose a tu calendario.`
   },
   track: {
     name: "Atletismo",
     hero: trackImage,
-    description: "Entrenamiento completo en pista y campo para todas las disciplinas atléticas.",
-    highlights: ["Pista de 400m profesional", "Zona de saltos completa", "Área de lanzamientos", "Preparación olímpica"],
-    programs: [
-      { name: "Track & Field Academy", duration: "Año académico", ages: "14-18 años", price: "$41,000" },
-      { name: "Elite Training", duration: "Todo el año", ages: "13-18 años", price: "$22,000" },
-      { name: "Track Camps", duration: "2-3 semanas", ages: "12-18 años", price: "$2,100/semana" }
-    ],
-    facilities: [
-      "Pista de 400 metros",
-      "Área de salto alto y con garrocha",
-      "Foso de salto largo y triple",
-      "Círculos de lanzamiento",
-      "Pista cubierta para mal tiempo"
-    ],
-    schedule: {
-      morning: "6:30-8:30 AM - Track practice",
-      midday: "12:00-2:00 PM - Field events",
-      afternoon: "3:30-5:00 PM - Strength & conditioning"
-    }
+    description: `El programa de atletismo de IMG Academy ofrece entrenamiento específico por disciplina para saltadores, velocistas, decatletas, vallistas, lanzadores, garrochistas y corredores de medio fondo, fondo y campo traviesa, siguiendo un calendario de competencia anual.
+
+Con una metodología única y comprobada, basada en el desarrollo intencional de la capacidad de aprendizaje, la concentración y la resiliencia, cada estudiante-atleta fortalece sus habilidades y se siente preparado y seguro para rendir al máximo nivel.`
   },
   wrestling: {
     name: "Lucha",
     hero: wrestlingImage,
-    description: "Programa de lucha con técnicas tradicionales y modernas para competencia de élite.",
-    highlights: ["Sala de lucha especializada", "Entrenamiento técnico avanzado", "Preparación mental", "Competencias nacionales"],
-    programs: [
-      { name: "Wrestling Academy", duration: "Año académico", ages: "14-18 años", price: "$42,000" },
-      { name: "Technique Training", duration: "Todo el año", ages: "12-18 años", price: "$20,000" },
-      { name: "Wrestling Camps", duration: "1-2 semanas", ages: "10-18 años", price: "$1,450/semana" }
-    ],
-    facilities: [
-      "Sala de lucha de 3,000 sq ft",
-      "8 mats de competencia",
-      "Área de preparación física",
-      "Sauna para corte de peso",
-      "Sala de video análisis"
-    ],
-    schedule: {
-      morning: "6:00-8:00 AM - Technique practice",
-      midday: "1:00-2:30 PM - Live wrestling",
-      afternoon: "4:00-5:30 PM - Strength training"
+    description: `Programa de lucha con técnicas tradicionales y modernas para competencia de élite.`
   },
   volleyball: {
     name: "Voleibol",
     hero: volleyballImage,
-    description: "Programa integral de voleibol con técnicas avanzadas de ataque, defensa y trabajo en equipo para competir al más alto nivel.",
-    highlights: ["Canchas cubiertas profesionales", "Entrenamiento técnico especializado", "Desarrollo de trabajo en equipo", "Competencias universitarias"],
-    programs: [
-      { name: "Volleyball Academy", duration: "Año académico", ages: "14-18 años", price: "$40,000" },
-      { name: "Skills Training", duration: "Todo el año", ages: "12-18 años", price: "$21,000" },
-      { name: "Volleyball Camps", duration: "1-2 semanas", ages: "10-18 años", price: "$1,550/semana" }
-    ],
-    facilities: [
-      "4 canchas de voleibol cubiertas",
-      "Cancha principal con gradas",
-      "Área de entrenamiento técnico",
-      "Centro de preparación física",
-      "Sala de análisis de video"
-    ],
-    schedule: {
-      morning: "7:00-9:00 AM - Técnica individual",
-      midday: "1:00-3:00 PM - Práctica de equipo",
-      afternoon: "4:00-5:30 PM - Preparación física"
-    }
+    description: `Con más de 40 años de experiencia y una base de entrenamiento reconocida a nivel mundial, los campamentos de voleibol de IMG Academy ofrecen a cada atleta la oportunidad de alcanzar sus metas.
+
+Diseñados para todos los niveles de habilidad, nuestros campamentos incluyen dos sesiones diarias en cancha y la opción de enfocarse en especializaciones clave como rendimiento mental o liderazgo.
+
+Además, incorporan entrenamiento específico por posición y escenarios competitivos que preparan a los jugadores para destacar en la cancha y más allá.`
   },
   performance: {
     name: "Performance",
     hero: performanceImage,
-    description: "Programa de alto rendimiento deportivo enfocado en optimizar el desempeño atlético a través de ciencia deportiva y tecnología avanzada.",
-    highlights: ["Análisis biomecánico avanzado", "Preparación física científica", "Recuperación deportiva", "Nutrición especializada"],
-    programs: [
-      { name: "Elite Performance Program", duration: "Año académico", ages: "15-18 años", price: "$50,000" },
-      { name: "Performance Training", duration: "Todo el año", ages: "13-18 años", price: "$32,000" },
-      { name: "Performance Camps", duration: "2-3 semanas", ages: "14-18 años", price: "$4,500/semana" }
-    ],
-    facilities: [
-      "Laboratorio de biomecánica",
-      "Centro de alto rendimiento",
-      "Piscina de recuperación",
-      "Cámaras de crioterapia",
-      "Laboratorio nutricional"
-    ],
-    schedule: {
-      morning: "6:00-8:00 AM - Evaluaciones físicas",
-      midday: "12:00-2:00 PM - Entrenamiento especializado",
-      afternoon: "3:00-5:00 PM - Recuperación y análisis"
-    }
+    description: `El entrenamiento que realizas fuera de la cancha es tan importante como la práctica y la competencia. Por eso, los campamentos de Performance de IMG Academy se enfocan en el desarrollo integral del cuerpo y la mente, con entrenamientos en áreas clave como:
+
+• Fuerza y potencia
+• Velocidad y agilidad
+• Confianza y liderazgo
+• Prevención de lesiones (pre-hab)
+• Nutrición
+• ¡y mucho más!
+
+Dirigidos a jóvenes de 12 a 18 años, estos campamentos están diseñados para todos los niveles de habilidad y te brindan la oportunidad de aprender directamente de líderes de talla mundial, que te ayudarán a convertirte en tu mejor versión cada día.
+
+Disponibles durante todo el año, para adaptarse a tu calendario.`
   },
   softball: {
-    name: "Softball",
+    name: "Sóftbol",
     hero: softballImage,
-    description: "Programa completo de softball femenino con énfasis en técnicas específicas de bateo, pitcheo y estrategia de juego.",
-    highlights: ["Diamantes especializados", "Técnica de bateo avanzada", "Pitcheo femenino especializado", "Estrategia de juego moderna"],
-    programs: [
-      { name: "Softball Academy", duration: "Año académico", ages: "14-18 años", price: "$43,500" },
-      { name: "Skills Development", duration: "Todo el año", ages: "12-18 años", price: "$23,000" },
-      { name: "Softball Camps", duration: "1-2 semanas", ages: "10-18 años", price: "$1,750/semana" }
-    ],
-    facilities: [
-      "3 diamantes de softball",
-      "8 jaulas de bateo especializadas",
-      "Área de pitcheo cubierto",
-      "Centro de preparación física",
-      "Sala de análisis táctico"
-    ],
-    schedule: {
-      morning: "7:00-9:30 AM - Práctica en el campo",
-      midday: "1:00-2:30 PM - Bateo y pitcheo",
-      afternoon: "3:30-5:00 PM - Juegos de práctica"
-    }
-  }
+    description: `¡Sé parte de nuestro año inaugural y vive la experiencia del innovador programa de sóftbol de IMG Academy!
+
+Nuestro programa de sóftbol prioriza el desarrollo de cada estudiante-atleta, garantizando un crecimiento tanto integral como personalizado. Nuestros entrenadores expertos adaptan el entrenamiento a la posición, necesidades, objetivos y nivel actual de cada jugadora.
+
+La progresión a lo largo del año refleja la de un programa profesional, lo que permite a las atletas enfocarse en lo que más importa en cada temporada y llegar confiadas y preparadas antes de competir a nivel universitario.`
   }
 };
 
