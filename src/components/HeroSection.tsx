@@ -1,22 +1,55 @@
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
+import logoWhite from "@/assets/img-logo-white.png";
+
 const HeroSection = () => {
+  const plugin = useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: false })
+  );
+
+  // Use instalaciones images for hero carousel
+  const heroImages = Array.from({ length: 18 }, (_, i) => ({
+    id: i + 1,
+    image: `/carousel_images/instalaciones_carousel/${i + 1}.jpg`,
+    alt: `IMG Academy Hero ${i + 1}`
+  }));
+
   return <>
-      {/* Video Hero Section */}
+      {/* Hero Carousel Section */}
       <section className="relative h-screen w-full overflow-hidden">
-        <div className="absolute inset-0 bg-gray-600 flex items-center justify-center">
-          
-        </div>
-        {/* Video placeholder - in real implementation, this would be a video element */}
-        <div className="hidden">
-          {/* <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
-            className="absolute inset-0 w-full h-full object-cover"
-           >
-            <source src="/path-to-video.mp4" type="video/mp4" />
-           </video> */}
-        </div>
+        <Carousel 
+          plugins={[plugin.current]}
+          className="w-full h-full"
+          opts={{
+            align: "start",
+            loop: true,
+            dragFree: false,
+            slidesToScroll: 1,
+          }}
+        >
+          <CarouselContent className="h-full -ml-0">
+            {heroImages.map(image => (
+              <CarouselItem key={image.id} className="pl-0 basis-full">
+                <div className="relative h-screen w-full">
+                  <img 
+                    src={image.image} 
+                    alt={image.alt}
+                    className="h-full w-full object-cover" 
+                  />
+                  {/* Logo overlay with transparency */}
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                    <img 
+                      src={logoWhite}
+                      alt="IMG Academy Logo"
+                      className="w-64 h-auto opacity-80 drop-shadow-2xl"
+                    />
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </section>
 
       <section className="bg-primary text-white">
