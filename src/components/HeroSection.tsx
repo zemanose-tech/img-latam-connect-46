@@ -17,7 +17,7 @@ const HeroSection = () => {
 
   return <>
       {/* Hero Carousel Section */}
-      <section className="relative h-[70vh] w-full overflow-hidden">
+      <section className="relative h-screen w-full overflow-hidden">
         <Carousel 
           plugins={[plugin.current]}
           className="w-full h-full"
@@ -31,26 +31,25 @@ const HeroSection = () => {
           <CarouselContent className="h-full -ml-0">
             {heroImages.map(image => (
               <CarouselItem key={image.id} className="pl-0 basis-full">
-                <div className="relative h-full w-full">
+                <div className="relative h-screen w-full">
                   <img 
                     src={image.image} 
                     alt={image.alt}
-                    className="h-full w-full object-cover object-center" 
+                    className="h-full w-full object-cover" 
                   />
+                  {/* Logo overlay with transparency */}
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                    <img 
+                      src={logoWhite}
+                      alt="IMG Academy Logo"
+                      className="w-64 h-auto opacity-80 drop-shadow-2xl"
+                    />
+                  </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
         </Carousel>
-        
-        {/* Static logo icon overlay */}
-        <div className="absolute top-8 right-8 z-10">
-          <img 
-            src={logoWhite}
-            alt="IMG Academy Icon"
-            className="w-16 h-auto opacity-70 drop-shadow-lg"
-          />
-        </div>
       </section>
 
       <section className="bg-primary text-white">
