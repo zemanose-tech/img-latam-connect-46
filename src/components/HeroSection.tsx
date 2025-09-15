@@ -2,7 +2,6 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import { useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import logoWhite from "@/assets/img-logo-white.png";
-import logoOverlay from "@/assets/logo-overlay.png";
 
 const HeroSection = () => {
   const plugin = useRef(
@@ -43,15 +42,6 @@ const HeroSection = () => {
             ))}
           </CarouselContent>
         </Carousel>
-        
-        {/* Static Logo Overlay */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-          <img 
-            src={logoOverlay}
-            alt="Logo Overlay"
-            className="w-48 h-auto drop-shadow-2xl"
-          />
-        </div>
       </section>
 
       <section className="bg-primary text-white">
