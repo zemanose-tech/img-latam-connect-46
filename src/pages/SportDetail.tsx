@@ -210,146 +210,42 @@ const SportDetail = () => {
         </div>
       </section>
 
-        {/* Highlights */}
-        <section className="py-12 bg-img-white">
+        {/* Sport Description Section */}
+        <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {sport.highlights.map((highlight, index) => (
-                <Card key={index} className="text-center border-0 shadow-md">
-                  <CardContent className="pt-6">
-                    <div className="w-12 h-12 bg-img-blue/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Trophy className="w-6 h-6 text-img-blue" />
-                    </div>
-                    <p className="font-medium text-gray-700">{highlight}</p>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="max-w-4xl mx-auto">
+              <div className="prose prose-lg max-w-none">
+                <div className="text-foreground leading-relaxed space-y-6">
+                  {sport.description.split('\n\n').map((paragraph, index) => (
+                    <p key={index} className="text-lg text-muted-foreground">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Detailed Information */}
-        <section className="py-20">
+        {/* Inquiry Section */}
+        <section className="py-16 bg-muted">
           <div className="container mx-auto px-4">
-            <Tabs defaultValue="programs" className="w-full">
-              <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="programs">Programas</TabsTrigger>
-                <TabsTrigger value="facilities">Instalaciones</TabsTrigger>
-                <TabsTrigger value="schedule">Horarios</TabsTrigger>
-                <TabsTrigger value="contact">Contacto</TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="programs" className="mt-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {sport.programs.map((program, index) => (
-                    <Card key={index}>
-                      <CardHeader>
-                        <CardTitle className="text-img-blue">{program.name}</CardTitle>
-                        <CardDescription>
-                          <div className="flex items-center gap-4 text-sm">
-                            <span className="flex items-center">
-                              <Calendar className="w-4 h-4 mr-1" />
-                              {program.duration}
-                            </span>
-                            <span className="flex items-center">
-                              <Users className="w-4 h-4 mr-1" />
-                              {program.ages}
-                            </span>
-                          </div>
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="text-2xl font-bold text-img-blue mb-4">
-                          {program.price}
-                        </div>
-                        <Button 
-                          className="w-full bg-img-blue hover:bg-img-blue-dark"
-                          onClick={() => {
-                            setInquiryType(`${program.name} - ${sport.name}`);
-                            setIsModalOpen(true);
-                          }}
-                        >
-                          Más Información
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="facilities" className="mt-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {sport.facilities.map((facility, index) => (
-                    <Card key={index}>
-                      <CardContent className="pt-6">
-                        <div className="flex items-center">
-                          <div className="w-8 h-8 bg-img-blue/10 rounded-full flex items-center justify-center mr-4">
-                            <MapPin className="w-4 h-4 text-img-blue" />
-                          </div>
-                          <p className="font-medium">{facility}</p>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="schedule" className="mt-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-img-blue">Mañana</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>{sport.schedule.morning}</p>
-                    </CardContent>
-                  </Card>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-img-blue">Mediodía</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>{sport.schedule.midday}</p>
-                    </CardContent>
-                  </Card>
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-img-blue">Tarde</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>{sport.schedule.afternoon}</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="contact" className="mt-8">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-img-blue">Contacta a Nuestro Representante</CardTitle>
-                    <CardDescription>
-                      Obtén información personalizada sobre el programa de {sport.name}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <p>Nuestro representante en Latinoamérica está disponible para brindarte información detallada sobre:</p>
-                      <ul className="list-disc list-inside space-y-2 text-gray-700">
-                        <li>Requisitos de admisión específicos</li>
-                        <li>Descuentos regionales disponibles</li>
-                        <li>Proceso de aplicación</li>
-                        <li>Becas y ayuda financiera</li>
-                      </ul>
-                      <Link to="/contact">
-                        <Button size="lg" className="bg-img-blue hover:bg-img-blue-dark text-white">
-                          Contactar Representante
-                        </Button>
-                      </Link>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
+            <div className="max-w-2xl mx-auto text-center">
+              <h2 className="text-3xl font-bold mb-6">¿Interesado en nuestro programa de {sport.name}?</h2>
+              <p className="text-lg text-muted-foreground mb-8">
+                Obtén más información personalizada sobre nuestros campamentos y programas.
+              </p>
+              <Button 
+                size="lg" 
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg"
+                onClick={() => {
+                  setInquiryType(`Información sobre ${sport.name}`);
+                  setIsModalOpen(true);
+                }}
+              >
+                Solicitar Más Información
+              </Button>
+            </div>
           </div>
         </section>
       </main>
