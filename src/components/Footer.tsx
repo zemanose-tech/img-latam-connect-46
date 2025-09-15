@@ -10,11 +10,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <img 
-                src={imgLogo} 
-                alt="IMG Academy - Gladys de Loaiza Authorized Representative" 
-                className="w-20 h-20 object-contain"
-              />
+              <img src={imgLogo} alt="IMG Academy - Gladys de Loaiza Authorized Representative" className="w-20 h-20 object-contain" />
               <div>
                 <h3 className="text-xl font-bold">SPORTS ACADEMY</h3>
                 <p className="text-xs text-primary-foreground/80">Global Referral Program Member of IMG Academy</p>
@@ -59,23 +55,10 @@ const Footer = () => {
                 <Mail className="w-4 h-4 mr-2 text-accent" />
                 <span className="text-primary-foreground/80">admisiones.latam@imgacademy.com</span>
               </div>
-              <div className="flex items-start">
-                <MapPin className="w-4 h-4 mr-2 mt-0.5 text-accent" />
-                <div className="text-primary-foreground/80">
-                  <p>Representante para:</p>
-                  <p>Colombia, España, Panamá, Costa Rica</p>
-                </div>
-              </div>
+              
             </div>
             
-            <div className="mt-4 p-3 bg-white/10 rounded-lg">
-              <p className="text-xs text-primary-foreground/90 font-semibold">
-                🕒 Horario de atención:
-              </p>
-              <p className="text-xs text-primary-foreground/80">
-                Lun-Vie: 8:00-20:00 (Col) / 14:00-02:00 (Esp)
-              </p>
-            </div>
+            
           </div>
         </div>
       </div>
