@@ -84,6 +84,12 @@ const sportsPrograms = [{
   description: "Desarrollo completo en softball con enfoque en habilidades específicas",
   image: softballImage,
   highlights: ["Diamantes especializados", "Técnica de bateo", "Pitcheo femenino", "Estrategia de juego"]
+}, {
+  id: "adults",
+  name: "Programas de Adultos",
+  description: "Programas especializados para atletas adultos que buscan mejorar su rendimiento",
+  image: performanceImage,
+  highlights: ["Entrenamientos personalizados", "Flexibilidad de horarios", "Preparación física", "Programas corporativos"]
 }];
 const Sports = () => {
   return <div className="min-h-screen bg-background text-foreground">
@@ -135,7 +141,7 @@ const Sports = () => {
                           {highlight}
                         </li>)}
                     </ul>
-                    <Link to={`/sport/${sport.id}`}>
+                    <Link to={sport.id === 'adults' ? '/adult-programs' : `/sport/${sport.id}`}>
                       <Button className="w-full bg-primary hover:bg-primary/90 text-white">
                         Ver Programa Completo
                       </Button>

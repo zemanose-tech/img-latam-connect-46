@@ -7,6 +7,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Sports from "./pages/Sports";
 import SportDetail from "./pages/SportDetail";
+import AdultPrograms from "./pages/AdultPrograms";
 import Contact from "./pages/Contact";
 
 import Camps from "./pages/Camps";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/sports" element={<Sports />} />
           <Route path="/sport/:sportId" element={<SportDetail />} />
+          <Route path="/adult-programs" element={<AdultPrograms />} />
           
           <Route path="/contact" element={<Contact />} />
           <Route path="/camps" element={<Camps />} />
