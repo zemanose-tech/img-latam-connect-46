@@ -118,11 +118,7 @@ const Sports = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {sportsPrograms.map(sport => <Card key={sport.id} className="group hover:shadow-lg transition-all duration-300 border border-gray-200">
                   <div className="relative overflow-hidden rounded-t-lg">
-                    <img 
-                      src={sport.image} 
-                      alt={`Instalaciones de ${sport.name}`}
-                      className="w-full h-48 object-cover"
-                    />
+                    <img src={sport.image} alt={`Instalaciones de ${sport.name}`} className="w-full h-48 object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <Badge className="absolute top-4 left-4 bg-primary text-white">
                       {sport.name}
@@ -135,12 +131,7 @@ const Sports = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2 mb-6">
-                      {sport.highlights.map((highlight, index) => <li key={index} className="flex items-center text-sm text-gray-700">
-                          <div className="w-2 h-2 bg-primary rounded-full mr-3" />
-                          {highlight}
-                        </li>)}
-                    </ul>
+                    
                     <Link to={sport.id === 'adults' ? '/adult-programs' : `/sport/${sport.id}`}>
                       <Button className="w-full bg-primary hover:bg-primary/90 text-white">
                         Ver Programa Completo
