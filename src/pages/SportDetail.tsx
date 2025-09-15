@@ -302,10 +302,13 @@ const sportDetails = {
 
 const SportDetail = () => {
   const { sportId } = useParams();
+  console.log("SportId from URL:", sportId);
+  console.log("Available sports:", Object.keys(sportDetails));
   const sport = sportDetails[sportId as keyof typeof sportDetails];
+  console.log("Found sport:", sport);
 
   if (!sport) {
-    return <div>Deporte no encontrado</div>;
+    return <div>Deporte no encontrado - SportId: {sportId}</div>;
   }
 
   return (
