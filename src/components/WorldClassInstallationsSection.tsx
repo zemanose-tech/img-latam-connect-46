@@ -10,7 +10,7 @@ const WorldClassInstallationsSection = () => {
   }));
 
   return (
-    <section className="bg-background px-6 py-16">
+    <section className="bg-muted px-6 py-16">
       <div className="mb-8">
         <AutoScrollCarousel images={instalacionesImages} height="h-80" />
       </div>
