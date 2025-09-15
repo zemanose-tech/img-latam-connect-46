@@ -45,13 +45,13 @@ const HeroSection = () => {
         
         {/* Static Text and Logo Overlay */}
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
-          <h1 className="text-white text-6xl font-bold mb-8 text-center">
+          <h1 className="text-white text-4xl font-bold mb-6 text-center">
             Bienvenidos a
           </h1>
           <img 
             src={logoWhite} 
             alt="IMG Academy Logo" 
-            className="h-32 w-auto"
+            className="h-20 w-auto"
           />
         </div>
       </section>
