@@ -35,7 +35,7 @@ const HeroSection = () => {
                   <img 
                     src={image.image} 
                     alt={image.alt}
-                    className="h-full w-full object-cover" 
+                    className="h-full w-full object-cover object-center" 
                   />
                 </div>
               </CarouselItem>
