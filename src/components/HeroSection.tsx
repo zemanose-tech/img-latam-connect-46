@@ -1,7 +1,7 @@
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
-import logoWhite from "@/assets/img-logo-white.png";
+import logoBlue from "@/assets/gladys-logo-blue.png";
 
 const HeroSection = () => {
   const plugin = useRef(
@@ -49,9 +49,9 @@ const HeroSection = () => {
             Bienvenidos a
           </h1>
           <img 
-            src={logoWhite} 
-            alt="IMG Academy Logo" 
-            className="h-20 w-auto"
+            src={logoBlue} 
+            alt="Gladys de Loaiza - IMG Academy Representative" 
+            className="h-32 w-auto"
           />
         </div>
       </section>
