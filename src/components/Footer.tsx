@@ -13,7 +13,7 @@ const Footer = () => {
               <img 
                 src={imgLogo} 
                 alt="IMG Academy - Gladys de Loaiza Authorized Representative" 
-                className="w-28 h-28 object-contain brightness-0 invert"
+                className="w-20 h-20 object-contain"
               />
               <div>
                 <h3 className="text-xl font-bold">SPORTS ACADEMY</h3>
