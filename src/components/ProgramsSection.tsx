@@ -1,7 +1,9 @@
+import React, { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Trophy, GraduationCap, Calendar, MapPin } from "lucide-react";
+import { InquiryModal } from "@/components/InquiryModal";
 
 const programs = [
   {
@@ -34,6 +36,8 @@ const programs = [
 ];
 
 const ProgramsSection = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProgram, setSelectedProgram] = useState("");
   return (
     <section id="programas" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -101,7 +105,13 @@ const ProgramsSection = () => {
                     </ul>
                   </div>
 
-                  <Button className="w-full mt-6 bg-primary hover:bg-primary/90">
+                  <Button 
+                    className="w-full mt-6 bg-primary hover:bg-primary/90"
+                    onClick={() => {
+                      setSelectedProgram(program.title);
+                      setIsModalOpen(true);
+                    }}
+                  >
                     Más información
                   </Button>
                 </div>
@@ -120,12 +130,25 @@ const ProgramsSection = () => {
             Nuestro equipo de admisiones en Latinoamérica te ayudará a encontrar el programa perfecto 
             según tus objetivos deportivos, académicos y presupuesto.
           </p>
-          <Button size="lg" className="bg-primary hover:bg-primary/90">
+          <Button 
+            size="lg" 
+            className="bg-primary hover:bg-primary/90"
+            onClick={() => {
+              setSelectedProgram("Consulta Personalizada");
+              setIsModalOpen(true);
+            }}
+          >
             <MapPin className="w-5 h-5 mr-2" />
             Consulta personalizada gratuita
           </Button>
         </div>
       </div>
+      
+      <InquiryModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        inquiryType={`Información sobre ${selectedProgram}`}
+      />
     </section>
   );
 };

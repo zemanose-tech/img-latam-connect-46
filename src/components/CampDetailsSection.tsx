@@ -1,6 +1,9 @@
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { InquiryModal } from "@/components/InquiryModal";
 const CampDetailsSection = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const camps = [{
     title: "IMG ACADEMY CAMP",
     subtitle: "Edades 13-18",
@@ -63,13 +66,22 @@ const CampDetailsSection = () => {
                 <p className={`text-sm leading-relaxed mb-6 ${camp.bgColor === 'bg-blue-600' ? 'text-white' : 'text-gray-700'}`}>
                   {camp.campInfo}
                 </p>
-                <Button className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full">
+                <Button 
+                  className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full"
+                  onClick={() => setIsModalOpen(true)}
+                >
                   Reservar Ahora
                 </Button>
               </div>
             </CardContent>
           </Card>)}
       </div>
+      
+      <InquiryModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        inquiryType="Reserva de Campo"
+      />
     </section>;
 };
 export default CampDetailsSection;

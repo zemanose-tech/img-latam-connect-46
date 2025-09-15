@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,6 +9,7 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Users, Trophy, Calendar, MapPin } from "lucide-react";
 import SportImageCarousel from "@/components/SportImageCarousel";
+import { InquiryModal } from "@/components/InquiryModal";
 import tennisImage from "@/assets/tennis-facilities.jpg";
 import golfImage from "@/assets/golf-facilities.jpg";
 import footballImage from "@/assets/football-facilities.jpg";
@@ -302,6 +304,8 @@ const sportDetails = {
 
 const SportDetail = () => {
   const { sportId } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [inquiryType, setInquiryType] = useState("");
   console.log("SportId from URL:", sportId);
   console.log("Available sports:", Object.keys(sportDetails));
   const sport = sportDetails[sportId as keyof typeof sportDetails];
@@ -355,6 +359,10 @@ const SportDetail = () => {
                   size="lg" 
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-primary"
+                  onClick={() => {
+                    setInquiryType(`Reserva para ${sport.name}`);
+                    setIsModalOpen(true);
+                  }}
                 >
                   Reservar Ahora
                 </Button>
@@ -429,7 +437,13 @@ const SportDetail = () => {
                         <div className="text-2xl font-bold text-img-blue mb-4">
                           {program.price}
                         </div>
-                        <Button className="w-full bg-img-blue hover:bg-img-blue-dark">
+                        <Button 
+                          className="w-full bg-img-blue hover:bg-img-blue-dark"
+                          onClick={() => {
+                            setInquiryType(`${program.name} - ${sport.name}`);
+                            setIsModalOpen(true);
+                          }}
+                        >
                           Más Información
                         </Button>
                       </CardContent>
@@ -514,6 +528,13 @@ const SportDetail = () => {
           </div>
         </section>
       </main>
+      
+      <InquiryModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        inquiryType={inquiryType}
+      />
+      
       <Footer />
     </div>
   );
