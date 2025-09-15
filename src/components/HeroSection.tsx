@@ -3,11 +3,7 @@ const HeroSection = () => {
       {/* Video Hero Section */}
       <section className="relative h-screen w-full overflow-hidden">
         <div className="absolute inset-0 bg-gray-600 flex items-center justify-center">
-          <div className="text-center text-white">
-            <div className="text-8xl mb-4">▶️</div>
-            <p className="text-xl font-medium">Video Introductorio IMG Academy</p>
-            <p className="text-sm opacity-75">Auto-reproducción • Silenciado • Bucle</p>
-          </div>
+          
         </div>
         {/* Video placeholder - in real implementation, this would be a video element */}
         <div className="hidden">
@@ -25,22 +21,10 @@ const HeroSection = () => {
 
       <section className="bg-primary text-white">
       {/* Logo Section */}
-      <div className="text-center py-16">
-        <div className="w-24 h-24 bg-white rounded mx-auto mb-8 flex items-center justify-center">
-          <span className="text-primary text-2xl font-bold">IMG</span>
-        </div>
-        <h1 className="text-xl font-bold mb-2">IMG ACADEMY</h1>
-      </div>
+      
 
       {/* Award Badge */}
-      <div className="flex justify-center mb-16">
-        <div className="bg-gray-400 rounded-lg p-8 w-80 h-48 flex items-center justify-center">
-          <div className="text-center text-gray-600">
-            <p className="text-sm">Award Badge Placeholder</p>
-            <p className="text-xs">(K12Digest Award)</p>
-          </div>
-        </div>
-      </div>
+      
 
       {/* Main Heading */}
       <div className="px-6 pb-16">

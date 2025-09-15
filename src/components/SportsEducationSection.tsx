@@ -1,6 +1,5 @@
 const SportsEducationSection = () => {
-  return (
-    <section className="bg-primary text-white px-6 py-16">
+  return <section className="bg-primary text-white px-6 py-16">
       <h2 className="text-4xl font-bold mb-8 text-center">
         LA DIFERENCIA<br />
         IMG ACADEMY
@@ -12,15 +11,8 @@ const SportsEducationSection = () => {
 
       {/* Award Badge Placeholder */}
       <div className="flex justify-center">
-        <div className="bg-gray-400 rounded-lg p-8 w-64 h-32 flex items-center justify-center">
-          <div className="text-center text-gray-600">
-            <p className="text-sm">Top 3 Award Placeholder</p>
-            <p className="text-xs">(World's Best School Prizes)</p>
-          </div>
-        </div>
+        
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default SportsEducationSection;
