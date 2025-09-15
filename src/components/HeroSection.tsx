@@ -70,26 +70,26 @@ A partir del año escolar 2024-2025.</p>
         <div className="grid grid-cols-3 gap-8 mb-12">
           <div className="text-center">
             <div className="text-5xl font-bold mb-2">100</div>
-            <p className="text-sm">por ciento de aceptación universitaria</p>
+            <p className="text-sm">% tasa de aceptación universitaria</p>
           </div>
           <div className="text-center">
             <div className="text-5xl font-bold mb-2">25</div>
-            <p className="text-sm">admisiones estudiantiles a las 25 mejores universidades según US News</p>
+            <p className="text-sm">admisiones a las 25 mejores universidades según US News</p>
           </div>
           <div className="text-center">
             <div className="text-5xl font-bold mb-2">311</div>
-            <p className="text-sm">estudiantes-atletas comprometidos con programas División I, II, III y NAIA</p>
+            <p className="text-sm">atletas comprometidos con programas NCAA División I, II, III y NAIA</p>
           </div>
         </div>
         
         <div className="grid grid-cols-3 gap-8">
           <div className="text-center">
             <div className="text-5xl font-bold mb-2">8</div>
-            <p className="text-sm">compromisos estudiantiles con escuelas Ivy League</p>
+            <p className="text-sm">compromisos con universidades Ivy League</p>
           </div>
           <div className="text-center">
             <div className="text-5xl font-bold mb-2">38</div>
-            <p className="text-sm">Estudiosos AP</p>
+            <p className="text-sm">estudiantes distinguidos como AP Scholars</p>
           </div>
           <div className="text-center">
             <div className="text-5xl font-bold mb-2">71</div>
