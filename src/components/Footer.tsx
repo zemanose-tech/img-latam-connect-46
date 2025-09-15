@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <img src={imgLogo} alt="IMG Academy - Gladys de Loaiza Authorized Representative" className="w-28 h-28 object-contain" />
+              <img src={imgLogo} alt="IMG Academy - Gladys de Loaiza Authorized Representative" className="w-32 h-32 object-contain" />
               <div>
                 <h3 className="text-xl font-bold">SPORTS ACADEMY</h3>
                 <p className="text-xs text-primary-foreground/80">Global Referral Program Member of IMG Academy</p>
