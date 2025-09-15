@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
-import imgLogo from "@/assets/img-logo-official.png";
+import imgLogo from "@/assets/IMG_Gladys_white_transparent.png";
 const Footer = () => {
   return <footer className="bg-primary text-primary-foreground">
       {/* Main Footer */}
