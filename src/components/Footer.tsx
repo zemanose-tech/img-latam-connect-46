@@ -2,7 +2,36 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import imgLogo from "@/assets/img-logo-official.png";
+import { removeBackground, loadImage } from "@/utils/backgroundRemoval";
+import { useEffect, useState } from "react";
 const Footer = () => {
+  const [processedLogoUrl, setProcessedLogoUrl] = useState<string>(imgLogo);
+
+  useEffect(() => {
+    const processLogo = async () => {
+      try {
+        // Create an image element from the logo
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = async () => {
+          try {
+            const blob = await removeBackground(img);
+            const url = URL.createObjectURL(blob);
+            setProcessedLogoUrl(url);
+          } catch (error) {
+            console.error('Failed to remove background:', error);
+            // Keep original logo on error
+          }
+        };
+        img.src = imgLogo;
+      } catch (error) {
+        console.error('Failed to process logo:', error);
+      }
+    };
+
+    processLogo();
+  }, []);
+
   return <footer className="bg-primary text-primary-foreground">
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-16">
@@ -10,7 +39,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <img src={imgLogo} alt="IMG Academy - Gladys de Loaiza Authorized Representative" className="w-20 h-20 object-contain" />
+              <img src={processedLogoUrl} alt="IMG Academy - Gladys de Loaiza Authorized Representative" className="w-32 h-32 object-contain" />
               <div>
                 <h3 className="text-xl font-bold">SPORTS ACADEMY</h3>
                 <p className="text-xs text-primary-foreground/80">Global Referral Program Member of IMG Academy</p>
