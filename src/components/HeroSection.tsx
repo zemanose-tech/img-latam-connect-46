@@ -2,44 +2,36 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import { useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import logoWhite from "@/assets/img-logo-white.png";
-
 const HeroSection = () => {
-  const plugin = useRef(
-    Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: false })
-  );
+  const plugin = useRef(Autoplay({
+    delay: 4000,
+    stopOnInteraction: false,
+    stopOnMouseEnter: false
+  }));
 
   // Use instalaciones images for hero carousel
-  const heroImages = Array.from({ length: 18 }, (_, i) => ({
+  const heroImages = Array.from({
+    length: 18
+  }, (_, i) => ({
     id: i + 1,
     image: `/carousel_images/instalaciones_carousel/${i + 1}.jpg`,
     alt: `IMG Academy Hero ${i + 1}`
   }));
-
   return <>
       {/* Hero Carousel Section */}
       <section className="relative h-screen w-full overflow-hidden">
-        <Carousel 
-          plugins={[plugin.current]}
-          className="w-full h-full"
-          opts={{
-            align: "start",
-            loop: true,
-            dragFree: false,
-            slidesToScroll: 1,
-          }}
-        >
+        <Carousel plugins={[plugin.current]} className="w-full h-full" opts={{
+        align: "start",
+        loop: true,
+        dragFree: false,
+        slidesToScroll: 1
+      }}>
           <CarouselContent className="h-full -ml-0">
-            {heroImages.map(image => (
-              <CarouselItem key={image.id} className="pl-0 basis-full">
+            {heroImages.map(image => <CarouselItem key={image.id} className="pl-0 basis-full">
                 <div className="relative h-screen w-full">
-                  <img 
-                    src={image.image} 
-                    alt={image.alt}
-                    className="h-full w-full object-cover" 
-                  />
+                  <img src={image.image} alt={image.alt} className="h-full w-full object-cover" />
                 </div>
-              </CarouselItem>
-            ))}
+              </CarouselItem>)}
           </CarouselContent>
         </Carousel>
         
@@ -48,11 +40,7 @@ const HeroSection = () => {
           <h1 className="text-white text-4xl font-bold mb-6 text-center">
             Bienvenidos a
           </h1>
-          <img 
-            src={logoWhite} 
-            alt="IMG Academy Logo" 
-            className="h-20 w-auto"
-          />
+          <img src={logoWhite} alt="IMG Academy Logo" className="h-20 w-auto" />
         </div>
       </section>
 
@@ -70,9 +58,11 @@ const HeroSection = () => {
           POTENCIAL<br />
           ILIMITADO.
         </h2>
-        <p className="text-lg leading-relaxed">
-          En IMG Academy, reunimos a estudiantes-atletas apasionados con entrenadores y profesores de clase mundial, creando un entorno único donde el talento se transforma en resultados. Aquí, cada meta cuenta y cada logro se apoya con una atención personalizada. Año escolar 2024-2025.
-        </p>
+        <p className="text-lg leading-relaxed">Cuando estudiantes-atletas dedicados y apasionados se unen a profesores y entrenadores expertos, encuentras un entorno verdaderamente único para crecer.
+
+La comunidad en el campus de IMG Academy apoya las metas de cada estudiante-atleta, creando un entorno respaldado por una proporción de 4 miembros del personal por cada estudiante.
+
+A partir del año escolar 2024-2025.</p>
       </div>
 
       {/* Statistics Section */}
