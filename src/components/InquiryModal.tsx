@@ -64,27 +64,52 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Note: Email functionality requires Supabase integration
-    console.log("Form submitted:", formData);
-    
-    toast({
-      title: "Consulta enviada",
-      description: "Nos pondremos en contacto contigo pronto.",
-    });
-    
-    // Reset form and close modal
-    setFormData({
-      name: "",
-      email: "",
-      country: "",
-      phoneCode: "",
-      phone: "",
-      message: "",
-    });
-    onClose();
+    try {
+      const selectedCountryName = countries.find(c => c.code === formData.country)?.name || 'Otro país';
+      
+      const response = await fetch('/functions/v1/send-inquiry-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify({
+          ...formData,
+          country: selectedCountryName,
+          inquiryType,
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Consulta enviada",
+          description: "Nos pondremos en contacto contigo pronto.",
+        });
+        
+        // Reset form and close modal
+        setFormData({
+          name: "",
+          email: "",
+          country: "",
+          phoneCode: "",
+          phone: "",
+          message: "",
+        });
+        onClose();
+      } else {
+        throw new Error('Error al enviar la consulta');
+      }
+    } catch (error) {
+      console.error('Error sending inquiry:', error);
+      toast({
+        title: "Error",
+        description: "Hubo un problema al enviar tu consulta. Por favor, inténtalo de nuevo.",
+        variant: "destructive",
+      });
+    }
   };
 
   const selectedCountry = countries.find((c) => c.code === formData.country);
@@ -249,8 +274,8 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
 
         <div className="mt-6 p-4 bg-muted rounded-lg">
           <p className="text-sm text-muted-foreground text-center">
-            <strong>Nota:</strong> Para habilitar el envío automático de emails, necesitas conectar tu proyecto a Supabase.
-            Mientras tanto, puedes contactarnos directamente usando la información de contacto.
+            Al enviar este formulario, recibirás una respuesta en tu email dentro de las próximas 24 horas.
+            Para consultas urgentes, contáctanos directamente por WhatsApp.
           </p>
         </div>
       </DialogContent>
