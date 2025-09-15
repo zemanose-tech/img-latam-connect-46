@@ -58,11 +58,9 @@ const HeroSection = () => {
           POTENCIAL<br />
           ILIMITADO.
         </h2>
-        <p className="text-lg leading-relaxed">Cuando estudiantes-atletas dedicados y apasionados se unen a profesores y entrenadores expertos, encuentras un entorno verdaderamente único para crecer.
+        <p className="text-lg leading-relaxed">En IMG Academy, reunimos a estudiantes-atletas apasionados con entrenadores y profesores de clase mundial, creando un entorno único donde el talento se transforma en resultados.
 
-La comunidad en el campus de IMG Academy apoya las metas de cada estudiante-atleta, creando un entorno respaldado por una proporción de 4 miembros del personal por cada estudiante.
-
-A partir del año escolar 2024-2025.</p>
+Aquí, cada meta cuenta y cada logro se apoya con una atención personalizada, gracias a nuestra proporción de 4 miembros del personal por cada estudiante.</p>
       </div>
 
       {/* Statistics Section */}
