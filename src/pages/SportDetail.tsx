@@ -22,7 +22,6 @@ import wrestlingImage from "@/assets/wrestling-facilities.jpg";
 import volleyballImage from "@/assets/volleyball-facilities.jpg";
 import performanceImage from "@/assets/performance-facilities.jpg";
 import softballImage from "@/assets/softball-facilities.jpg";
-
 const sportDetails = {
   tennis: {
     name: "Tenis",
@@ -126,32 +125,27 @@ Nuestro programa de sóftbol prioriza el desarrollo de cada estudiante-atleta, g
 La progresión a lo largo del año refleja la de un programa profesional, lo que permite a las atletas enfocarse en lo que más importa en cada temporada y llegar confiadas y preparadas antes de competir a nivel universitario.`
   }
 };
-
 const SportDetail = () => {
-  const { sportId } = useParams();
+  const {
+    sportId
+  } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [inquiryType, setInquiryType] = useState("");
   console.log("SportId from URL:", sportId);
   console.log("Available sports:", Object.keys(sportDetails));
   const sport = sportDetails[sportId as keyof typeof sportDetails];
   console.log("Found sport:", sport);
-
   if (!sport) {
     return <div>Deporte no encontrado - SportId: {sportId}</div>;
   }
-
-  return (
-    <div className="min-h-screen bg-background text-foreground">
+  return <div className="min-h-screen bg-background text-foreground">
       <Header />
       <main className="pt-20">
         {/* Image Carousel Hero Section */}
         <section className="relative py-12 bg-gray-100">
           <div className="container mx-auto px-4">
             <div className="mb-6">
-              <Link 
-                to="/sports" 
-                className="inline-flex items-center text-primary hover:text-primary/80 font-medium"
-              >
+              <Link to="/sports" className="inline-flex items-center text-primary hover:text-primary/80 font-medium">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Volver a Deportes
               </Link>
@@ -168,44 +162,10 @@ const SportDetail = () => {
               <h1 className="text-4xl md:text-6xl font-bold mb-6 capitalize">
                 {sport?.name}
               </h1>
-              <p className="text-xl text-white/90 mb-8">
-                {sport?.description}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/contact">
-                  <Button 
-                    size="lg" 
-                    className="bg-white text-primary hover:bg-gray-100 font-bold"
-                  >
-                    Solicitar Consulta
-                  </Button>
-                </Link>
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-primary"
-                  onClick={() => {
-                    setInquiryType(`Reserva para ${sport.name}`);
-                    setIsModalOpen(true);
-                  }}
-                >
-                  Reservar Ahora
-                </Button>
-              </div>
+              
+              
             </div>
-            <div className="relative">
-              {/* Key Stats */}
-              <div className="grid grid-cols-2 gap-6">
-                <div className="bg-white/10 rounded-lg p-6 text-center">
-                  <div className="text-3xl font-bold mb-2">Elite</div>
-                  <p className="text-sm text-white/80">Nivel de Entrenamiento</p>
-                </div>
-                <div className="bg-white/10 rounded-lg p-6 text-center">
-                  <div className="text-3xl font-bold mb-2">24/7</div>
-                  <p className="text-sm text-white/80">Acceso a Instalaciones</p>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>
@@ -216,11 +176,9 @@ const SportDetail = () => {
             <div className="max-w-4xl mx-auto">
               <div className="prose prose-lg max-w-none">
                 <div className="text-foreground leading-relaxed space-y-6">
-                  {sport.description.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="text-lg text-muted-foreground">
+                  {sport.description.split('\n\n').map((paragraph, index) => <p key={index} className="text-lg text-muted-foreground">
                       {paragraph}
-                    </p>
-                  ))}
+                    </p>)}
                 </div>
               </div>
             </div>
@@ -235,14 +193,10 @@ const SportDetail = () => {
               <p className="text-lg text-muted-foreground mb-8">
                 Obtén más información personalizada sobre nuestros campamentos y programas.
               </p>
-              <Button 
-                size="lg" 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg"
-                onClick={() => {
-                  setInquiryType(`Información sobre ${sport.name}`);
-                  setIsModalOpen(true);
-                }}
-              >
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg" onClick={() => {
+              setInquiryType(`Información sobre ${sport.name}`);
+              setIsModalOpen(true);
+            }}>
                 Solicitar Más Información
               </Button>
             </div>
@@ -250,15 +204,9 @@ const SportDetail = () => {
         </section>
       </main>
       
-      <InquiryModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        inquiryType={inquiryType}
-      />
+      <InquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} inquiryType={inquiryType} />
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default SportDetail;
