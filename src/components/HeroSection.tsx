@@ -42,6 +42,18 @@ const HeroSection = () => {
             ))}
           </CarouselContent>
         </Carousel>
+        
+        {/* Static Text and Logo Overlay */}
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
+          <h1 className="text-white text-6xl font-bold mb-8 text-center">
+            Bienvenidos a
+          </h1>
+          <img 
+            src={logoWhite} 
+            alt="IMG Academy Logo" 
+            className="h-32 w-auto"
+          />
+        </div>
       </section>
 
       <section className="bg-primary text-white">
