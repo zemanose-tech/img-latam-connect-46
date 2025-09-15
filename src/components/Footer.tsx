@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
+import gladysLogo from "@/assets/gladys-loaiza-logo.png";
 const Footer = () => {
   return <footer className="bg-primary text-primary-foreground">
       {/* Main Footer */}
@@ -9,9 +10,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
-                <span className="text-accent-foreground font-bold text-xl">IMG</span>
-              </div>
+              <img 
+                src={gladysLogo} 
+                alt="Gladys de Loaiza - IMG Academy Representative" 
+                className="w-12 h-12 object-contain"
+              />
               <div>
                 <h3 className="text-xl font-bold">SPORTS ACADEMY</h3>
                 <p className="text-xs text-primary-foreground/80">Global Referral Program Member of IMG Academy</p>
