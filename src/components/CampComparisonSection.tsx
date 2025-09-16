@@ -14,9 +14,7 @@ const CampComparisonSection = () => {
         {/* Help Choosing Section */}
         <Card className="mb-8 bg-blue-50 border-blue-200">
           <CardContent className="text-center py-8">
-            <h2 className="text-3xl font-bold text-primary mb-4">
-              ¿Necesitas Ayuda Eligiendo Tu Tipo de Campo?
-            </h2>
+            <h2 className="text-3xl font-bold text-primary mb-4">¿Necesitas Ayuda Eligiendo Tu Programa?</h2>
             
             
           </CardContent>
