@@ -33,8 +33,10 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Enlaces rápidos</h4>
             <ul className="space-y-2 text-sm">
               <li><a href="/" className="text-primary-foreground/80 hover:text-accent transition-colors">Inicio</a></li>
-              <li><a href="/#img-camps" className="text-primary-foreground/80 hover:text-accent transition-colors">Programas</a></li>
+              <li><a href="/camps" className="text-primary-foreground/80 hover:text-accent transition-colors">Camps</a></li>
+              <li><a href="/boarding" className="text-primary-foreground/80 hover:text-accent transition-colors">Internado</a></li>
               <li><a href="/facilities" className="text-primary-foreground/80 hover:text-accent transition-colors">Instalaciones</a></li>
+              <li><a href="/sports" className="text-primary-foreground/80 hover:text-accent transition-colors">Deportes</a></li>
               <li><a href="#contacto" className="text-primary-foreground/80 hover:text-accent transition-colors">Contacto</a></li>
             </ul>
           </div>
