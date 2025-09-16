@@ -16,6 +16,15 @@ const SportImageCarousel = ({ sportName }: SportImageCarouselProps) => {
       }));
     }
     
+    if (sportName === "Golf") {
+      // Golf carousel images (17 images)
+      return Array.from({ length: 17 }, (_, i) => ({
+        id: i + 1,
+        image: `/carousel_images/golf_carousel/${i + 1}.jpg`,
+        alt: `Instalaciones de Golf ${i + 1}`
+      }));
+    }
+    
     // Placeholder images for other sports - using a generic sports facility image
     return Array.from({ length: 5 }, (_, i) => ({
       id: i + 1,
