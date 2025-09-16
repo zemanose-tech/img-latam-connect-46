@@ -6,7 +6,6 @@ import { InquiryModal } from "@/components/InquiryModal";
 import { useState } from "react";
 const Footer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
   return <footer className="bg-primary text-primary-foreground">
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-16">
@@ -82,9 +81,7 @@ const Footer = () => {
             <a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors">
               Política de Privacidad
             </a>
-            <a href="#" className="text-primary-foreground/80 hover:text-accent transition-colors">
-              Términos de Uso
-            </a>
+            
             
           </div>
         </div>
@@ -98,11 +95,7 @@ const Footer = () => {
       </div>
       
       {/* Inquiry Modal */}
-      <InquiryModal 
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        inquiryType="Contacto General"
-      />
+      <InquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} inquiryType="Contacto General" />
     </footer>;
 };
 export default Footer;
