@@ -4,22 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { InquiryModal } from "@/components/InquiryModal";
-import AutoScrollCarousel from "@/components/AutoScrollCarousel";
-
-// Import carousel images
-import image1 from "@/assets/adults-facilities.jpg";
-import image2 from "@/assets/facilities.jpg";
-import image3 from "@/assets/tennis-facilities.jpg";
-import image4 from "@/assets/basketball-facilities.jpg";
-import image5 from "@/assets/golf-facilities.jpg";
-
-const carouselImages = [
-  { id: 1, image: image1, alt: "Performance Facilities" },
-  { id: 2, image: image2, alt: "General Facilities" },
-  { id: 3, image: image3, alt: "Tennis Facilities" },
-  { id: 4, image: image4, alt: "Basketball Facilities" },
-  { id: 5, image: image5, alt: "Golf Facilities" }
-];
+import SportImageCarousel from "@/components/SportImageCarousel";
 
 const AdultPrograms = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,7 +57,7 @@ Los programas están disponibles durante todo el año, con opciones de intensida
 
         {/* Carousel Section */}
         <section className="py-8">
-          <AutoScrollCarousel images={carouselImages} />
+          <SportImageCarousel sportName="Adultos" />
         </section>
 
         {/* Program Description */}

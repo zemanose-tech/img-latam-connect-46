@@ -88,6 +88,15 @@ const SportImageCarousel = ({ sportName }: SportImageCarouselProps) => {
       }));
     }
     
+    if (sportName === "Adultos" || sportName === "Adult Programs" || sportName === "Programas de Adultos") {
+      // Adult programs carousel images (8 images)
+      return Array.from({ length: 8 }, (_, i) => ({
+        id: i + 1,
+        image: `/carousel_images/adultos_carousel/${i + 1}.jpg`,
+        alt: `Instalaciones de Programas de Adultos ${i + 1}`
+      }));
+    }
+    
     // Default fallback for other sports
     return Array.from({ length: 5 }, (_, i) => ({
       id: i + 1,
