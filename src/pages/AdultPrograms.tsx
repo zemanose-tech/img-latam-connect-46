@@ -7,7 +7,7 @@ import { InquiryModal } from "@/components/InquiryModal";
 import AutoScrollCarousel from "@/components/AutoScrollCarousel";
 
 // Import carousel images
-import image1 from "@/assets/performance-facilities.jpg";
+import image1 from "@/assets/adults-facilities.jpg";
 import image2 from "@/assets/facilities.jpg";
 import image3 from "@/assets/tennis-facilities.jpg";
 import image4 from "@/assets/basketball-facilities.jpg";
