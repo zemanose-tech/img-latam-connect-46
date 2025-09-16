@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoWhite from "@/assets/img-logo-white.png";
+import { InquiryModal } from "@/components/InquiryModal";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOnCampusOpen, setIsOnCampusOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return <header className="fixed top-0 left-0 right-0 z-50 bg-primary shadow-md">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link to="/" className="flex items-center">
@@ -33,9 +35,12 @@ const Header = () => {
                 </Link>
               </div>}
           </div>
-          <Link to="/contact" className="text-white hover:text-white/80 transition-colors">
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="text-white hover:text-white/80 transition-colors"
+          >
             Contacto
-          </Link>
+          </button>
           
         </nav>
 
@@ -62,15 +67,28 @@ const Header = () => {
               <Link to="/sports" className="text-white hover:text-white/80 transition-colors" onClick={() => setIsMenuOpen(false)}>
                 Deportes
               </Link>
-              <Link to="/contact" className="text-white hover:text-white/80 transition-colors" onClick={() => setIsMenuOpen(false)}>
+              <button 
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setIsModalOpen(true);
+                }}
+                className="text-white hover:text-white/80 transition-colors text-left"
+              >
                 Contacto
-              </Link>
+              </button>
               <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary w-fit">
                 #AddMoreAthletes
               </Button>
             </nav>
           </div>}
       </div>
+      
+      {/* Inquiry Modal */}
+      <InquiryModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        inquiryType="Contacto General"
+      />
     </header>;
 };
 export default Header;

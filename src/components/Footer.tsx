@@ -2,7 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import imgLogo from "@/assets/IMG_Gladys_white_transparent.png";
+import { InquiryModal } from "@/components/InquiryModal";
+import { useState } from "react";
 const Footer = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   return <footer className="bg-primary text-primary-foreground">
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-16">
@@ -37,7 +41,7 @@ const Footer = () => {
               <li><a href="/boarding" className="text-primary-foreground/80 hover:text-accent transition-colors">Internado</a></li>
               <li><a href="/facilities" className="text-primary-foreground/80 hover:text-accent transition-colors">Instalaciones</a></li>
               <li><a href="/sports" className="text-primary-foreground/80 hover:text-accent transition-colors">Deportes</a></li>
-              <li><a href="#contacto" className="text-primary-foreground/80 hover:text-accent transition-colors">Contacto</a></li>
+              <li><button onClick={() => setIsModalOpen(true)} className="text-primary-foreground/80 hover:text-accent transition-colors text-left">Contacto</button></li>
             </ul>
           </div>
 
@@ -92,6 +96,13 @@ const Footer = () => {
           </p>
         </div>
       </div>
+      
+      {/* Inquiry Modal */}
+      <InquiryModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        inquiryType="Contacto General"
+      />
     </footer>;
 };
 export default Footer;
