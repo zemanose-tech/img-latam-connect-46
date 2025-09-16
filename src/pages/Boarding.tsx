@@ -4,18 +4,16 @@ import Footer from "@/components/Footer";
 import AutoScrollCarousel from "@/components/AutoScrollCarousel";
 import { Button } from "@/components/ui/button";
 import { InquiryModal } from "@/components/InquiryModal";
-
 const Boarding = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const internadoImages = Array.from({ length: 14 }, (_, i) => ({
+  const internadoImages = Array.from({
+    length: 14
+  }, (_, i) => ({
     id: i + 1,
     image: `/carousel_images/internado_carousel/${i + 1}.jpg`,
     alt: `IMG Academy Internado ${i + 1}`
   }));
-
-  return (
-    <div className="min-h-screen bg-background text-foreground">
+  return <div className="min-h-screen bg-background text-foreground">
       <Header />
       <main>
         {/* Internado Carousel Header */}
@@ -54,7 +52,7 @@ const Boarding = () => {
               
               <div className="mt-12 p-8 bg-primary/5 rounded-lg border border-primary/20">
                 <p className="text-2xl font-bold text-center text-primary">
-                  El resultado: <span className="text-3xl text-secondary">97%</span> de nuestros alumnos participa activamente en deportes, reforzando nuestra visión de una educación integral que forma líderes, deportistas y personas con valores para toda la vida.
+                  El resultado: <span className="text-3xl text-blue-900">97%</span> de nuestros alumnos participa activamente en deportes, reforzando nuestra visión de una educación integral que forma líderes, deportistas y personas con valores para toda la vida.
                 </p>
               </div>
             </div>
@@ -70,11 +68,7 @@ const Boarding = () => {
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               Obtén más información personalizada sobre nuestro programa de internado y cómo puede transformar el futuro de tu hijo.
             </p>
-            <Button 
-              size="lg" 
-              onClick={() => setIsModalOpen(true)}
-              className="bg-primary hover:bg-primary/90 text-white px-8"
-            >
+            <Button size="lg" onClick={() => setIsModalOpen(true)} className="bg-primary hover:bg-primary/90 text-white px-8">
               Solicitar Más Información
             </Button>
           </div>
@@ -83,13 +77,7 @@ const Boarding = () => {
       <Footer />
       
       {/* Inquiry Modal */}
-      <InquiryModal 
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        inquiryType="Programa de Internado"
-      />
-    </div>
-  );
+      <InquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} inquiryType="Programa de Internado" />
+    </div>;
 };
-
 export default Boarding;
