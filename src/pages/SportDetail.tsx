@@ -176,9 +176,38 @@ const SportDetail = () => {
             <div className="max-w-4xl mx-auto">
               <div className="prose prose-lg max-w-none">
                 <div className="text-foreground leading-relaxed space-y-6">
-                  {sport.description.split('\n\n').map((paragraph, index) => <p key={index} className="text-lg text-muted-foreground">
-                      {paragraph}
-                    </p>)}
+                  {sport.description.split('\n\n').map((paragraph, index) => {
+                    // Check if paragraph contains bullet points
+                    if (paragraph.includes('•')) {
+                      const lines = paragraph.split('\n');
+                      const textBeforeBullets = lines.filter(line => !line.trim().startsWith('•')).join('\n');
+                      const bulletPoints = lines.filter(line => line.trim().startsWith('•'));
+                      
+                      return (
+                        <div key={index}>
+                          {textBeforeBullets && (
+                            <p className="text-lg text-muted-foreground mb-4">
+                              {textBeforeBullets}
+                            </p>
+                          )}
+                          <ul className="space-y-2 ml-4">
+                            {bulletPoints.map((bullet, bulletIndex) => (
+                              <li key={bulletIndex} className="text-lg text-muted-foreground flex items-start">
+                                <span className="text-primary mr-3">•</span>
+                                <span>{bullet.replace('•', '').trim()}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      );
+                    }
+                    
+                    return (
+                      <p key={index} className="text-lg text-muted-foreground">
+                        {paragraph}
+                      </p>
+                    );
+                  })}
                 </div>
               </div>
             </div>
