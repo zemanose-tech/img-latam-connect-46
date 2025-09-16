@@ -52,7 +52,7 @@ const Boarding = () => {
               
               <div className="mt-12 p-8 bg-primary/5 rounded-lg border border-primary/20">
                 <p className="text-2xl font-bold text-center text-primary">
-                  El resultado: <span className="text-3xl text-blue-900">97%</span> de nuestros alumnos participa activamente en deportes, reforzando nuestra visión de una educación integral que forma líderes, deportistas y personas con valores para toda la vida.
+                  El resultado: <span className="text-3xl text-primary">97%</span> de nuestros alumnos participa activamente en deportes, reforzando nuestra visión de una educación integral que forma líderes, deportistas y personas con valores para toda la vida.
                 </p>
               </div>
             </div>
