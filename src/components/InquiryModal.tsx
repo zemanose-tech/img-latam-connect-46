@@ -180,15 +180,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 p-3 bg-background rounded-md">
-                  <Globe className="w-5 h-5 text-purple-600" />
-                  <div>
-                    <p className="font-medium">Horario de Atención</p>
-                    <p className="text-sm text-muted-foreground">
-                      Lun - Vie: 9:00 AM - 6:00 PM (COT)
-                    </p>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
