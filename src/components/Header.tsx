@@ -16,11 +16,11 @@ const Header = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
-          <div className="relative group">
-            <button className="text-white hover:text-white/80 transition-colors flex items-center gap-1" onMouseEnter={() => setIsOnCampusOpen(true)} onMouseLeave={() => setIsOnCampusOpen(false)}>
+          <div className="relative group" onMouseEnter={() => setIsOnCampusOpen(true)} onMouseLeave={() => setIsOnCampusOpen(false)}>
+            <button className="text-white hover:text-white/80 transition-colors flex items-center gap-1">
               En Campus <ChevronDown className="w-4 h-4" />
             </button>
-            {isOnCampusOpen && <div className="absolute top-full left-0 mt-1 bg-white shadow-lg rounded-md py-2 min-w-48" onMouseEnter={() => setIsOnCampusOpen(true)} onMouseLeave={() => setIsOnCampusOpen(false)}>
+            {isOnCampusOpen && <div className="absolute top-full left-0 bg-white shadow-lg rounded-md py-2 min-w-48 z-50">
                 <Link to="/facilities" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">
                   Instalaciones
                 </Link>
