@@ -74,34 +74,69 @@ const EnhancedContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    toast({
-      title: "¡Solicitud Enviada!",
-      description: "Nuestro representante te contactará en las próximas 24 horas.",
-    });
-
-    setIsSubmitting(false);
-    
-    // Reset form
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      country: "",
-      age: "",
-      sports: [],
-      programType: "",
-      experience: "",
-      message: "",
-      budget: "",
-      startDate: "",
-      parentConsent: false,
-      newsletter: true
-    });
+  
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/resend-email`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, // required if not public
+          },
+          body: JSON.stringify({
+            fullName: `${formData.firstName} ${formData.lastName}`,
+            email: formData.email,
+            phone: formData.phone,
+            country: formData.country,
+            age: formData.age,
+            sports: formData.sports.join(", "),
+            programType: formData.programType,
+            experience: formData.experience,
+            message: formData.message,
+            budget: formData.budget,
+            startDate: formData.startDate,
+          }),
+        }
+      );
+  
+      if (!res.ok) {
+        const error = await res.text();
+        throw new Error(error);
+      }
+  
+      toast({
+        title: "¡Solicitud Enviada!",
+        description: "Nuestro representante te contactará pronto.",
+      });
+  
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        country: "",
+        age: "",
+        sports: [],
+        programType: "",
+        experience: "",
+        message: "",
+        budget: "",
+        startDate: "",
+        parentConsent: false,
+        newsletter: true,
+      });
+    } catch (error) {
+      console.error("Email error:", error);
+      toast({
+        title: "Error",
+        description: "No se pudo enviar tu solicitud. Intenta de nuevo.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
