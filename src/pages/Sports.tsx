@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PriceCalculator from "@/components/PriceCalculator";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { InquiryModal } from "@/components/InquiryModal";
 import heroSportsImage from "@/assets/hero-sports.jpg";
 import tennisImage from "@/assets/tennis-facilities.jpg";
 import golfImage from "@/assets/golf-facilities.jpg";
@@ -93,6 +95,8 @@ const sportsPrograms = [{
   highlights: ["Entrenamientos personalizados", "Flexibilidad de horarios", "Preparación física", "Programas corporativos"]
 }];
 const Sports = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return <div className="min-h-screen bg-background text-foreground">
       <Header />
       <main className="pt-20">
@@ -156,15 +160,21 @@ const Sports = () => {
             <p className="text-xl text-img-white/90 mb-8 max-w-2xl mx-auto">
               Contacta a nuestro representante en Latinoamérica para obtener información personalizada sobre nuestros programas deportivos.
             </p>
-            <Link to="/contact">
-              <Button size="lg" className="bg-img-white text-img-blue hover:bg-img-white/90 font-bold px-8">
-                Contactar Ahora
-              </Button>
-            </Link>
+            <Button 
+              size="lg" 
+              className="bg-img-white text-img-blue hover:bg-img-white/90 font-bold px-8"
+              onClick={() => setIsModalOpen(true)}
+            >
+              Contactar Ahora
+            </Button>
           </div>
         </section>
       </main>
       <Footer />
+      <InquiryModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>;
 };
 export default Sports;
