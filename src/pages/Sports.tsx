@@ -18,6 +18,7 @@ import wrestlingImage from "@/assets/wrestling-facilities.jpg";
 import volleyballImage from "@/assets/volleyball-facilities.jpg";
 import performanceImage from "@/assets/performance-facilities.jpg";
 import softballImage from "@/assets/softball-facilities.jpg";
+import adultsImage from "@/assets/adults-facilities.jpg";
 const sportsPrograms = [{
   id: "tennis",
   name: "Tenis",
@@ -88,7 +89,7 @@ const sportsPrograms = [{
   id: "adults",
   name: "Programas de Adultos",
   description: "Programas especializados para atletas adultos que buscan mejorar su rendimiento",
-  image: performanceImage,
+  image: adultsImage,
   highlights: ["Entrenamientos personalizados", "Flexibilidad de horarios", "Preparación física", "Programas corporativos"]
 }];
 const Sports = () => {
