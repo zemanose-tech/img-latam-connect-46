@@ -1,49 +1,82 @@
 import React, { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Phone, Mail, MessageSquare, Globe } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-
 interface InquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
   inquiryType?: string;
 }
-
-const countries = [
-  { code: "CO", name: "Colombia", flag: "🇨🇴", phoneCode: "+57" },
-  { code: "ES", name: "España", flag: "🇪🇸", phoneCode: "+34" },
-  { code: "PA", name: "Panamá", flag: "🇵🇦", phoneCode: "+507" },
-  { code: "CR", name: "Costa Rica", flag: "🇨🇷", phoneCode: "+506" },
-  { code: "MX", name: "México", flag: "🇲🇽", phoneCode: "+52" },
-  { code: "AR", name: "Argentina", flag: "🇦🇷", phoneCode: "+54" },
-  { code: "CL", name: "Chile", flag: "🇨🇱", phoneCode: "+56" },
-  { code: "PE", name: "Perú", flag: "🇵🇪", phoneCode: "+51" },
-  { code: "EC", name: "Ecuador", flag: "🇪🇨", phoneCode: "+593" },
-  { code: "VE", name: "Venezuela", flag: "🇻🇪", phoneCode: "+58" },
-  { code: "US", name: "Estados Unidos", flag: "🇺🇸", phoneCode: "+1" },
-  { code: "OTHER", name: "Otro país", flag: "🌍", phoneCode: "" },
-];
-
+const countries = [{
+  code: "CO",
+  name: "Colombia",
+  flag: "🇨🇴",
+  phoneCode: "+57"
+}, {
+  code: "ES",
+  name: "España",
+  flag: "🇪🇸",
+  phoneCode: "+34"
+}, {
+  code: "PA",
+  name: "Panamá",
+  flag: "🇵🇦",
+  phoneCode: "+507"
+}, {
+  code: "CR",
+  name: "Costa Rica",
+  flag: "🇨🇷",
+  phoneCode: "+506"
+}, {
+  code: "MX",
+  name: "México",
+  flag: "🇲🇽",
+  phoneCode: "+52"
+}, {
+  code: "AR",
+  name: "Argentina",
+  flag: "🇦🇷",
+  phoneCode: "+54"
+}, {
+  code: "CL",
+  name: "Chile",
+  flag: "🇨🇱",
+  phoneCode: "+56"
+}, {
+  code: "PE",
+  name: "Perú",
+  flag: "🇵🇪",
+  phoneCode: "+51"
+}, {
+  code: "EC",
+  name: "Ecuador",
+  flag: "🇪🇨",
+  phoneCode: "+593"
+}, {
+  code: "VE",
+  name: "Venezuela",
+  flag: "🇻🇪",
+  phoneCode: "+58"
+}, {
+  code: "US",
+  name: "Estados Unidos",
+  flag: "🇺🇸",
+  phoneCode: "+1"
+}, {
+  code: "OTHER",
+  name: "Otro país",
+  flag: "🌍",
+  phoneCode: ""
+}];
 export const InquiryModal: React.FC<InquiryModalProps> = ({
   isOpen,
   onClose,
-  inquiryType = "Consulta General",
+  inquiryType = "Consulta General"
 }) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -51,44 +84,41 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
     country: "",
     phoneCode: "",
     phone: "",
-    message: "",
+    message: ""
   });
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleCountryChange = (countryCode: string) => {
-    const country = countries.find((c) => c.code === countryCode);
-    setFormData((prev) => ({
+    const country = countries.find(c => c.code === countryCode);
+    setFormData(prev => ({
       ...prev,
       country: countryCode,
-      phoneCode: country?.phoneCode || "",
+      phoneCode: country?.phoneCode || ""
     }));
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     try {
       const selectedCountryName = countries.find(c => c.code === formData.country)?.name || 'Otro país';
-      
       const response = await fetch('/functions/v1/send-inquiry-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
         },
         body: JSON.stringify({
           ...formData,
           country: selectedCountryName,
-          inquiryType,
-        }),
+          inquiryType
+        })
       });
-
       if (response.ok) {
         toast({
           title: "Consulta enviada",
-          description: "Nos pondremos en contacto contigo pronto.",
+          description: "Nos pondremos en contacto contigo pronto."
         });
-        
+
         // Reset form and close modal
         setFormData({
           name: "",
@@ -96,7 +126,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
           country: "",
           phoneCode: "",
           phone: "",
-          message: "",
+          message: ""
         });
         onClose();
       } else {
@@ -107,15 +137,12 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
       toast({
         title: "Error",
         description: "Hubo un problema al enviar tu consulta. Por favor, inténtalo de nuevo.",
-        variant: "destructive",
+        variant: "destructive"
       });
     }
   };
-
-  const selectedCountry = countries.find((c) => c.code === formData.country);
-
-  return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+  const selectedCountry = countries.find(c => c.code === formData.country);
+  return <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center mb-6">
@@ -137,12 +164,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                   <MessageSquare className="w-5 h-5 text-green-600" />
                   <div>
                     <p className="font-medium">WhatsApp</p>
-                    <a
-                      href="https://wa.me/573001234567"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
+                    <a href="https://wa.me/573001234567" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary">
                       +57 300 123 4567
                     </a>
                   </div>
@@ -152,10 +174,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                   <Mail className="w-5 h-5 text-blue-600" />
                   <div>
                     <p className="font-medium">Email</p>
-                    <a
-                      href="mailto:nloaiza@sportsacademy.co"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
+                    <a href="mailto:nloaiza@sportsacademy.co" className="text-sm text-muted-foreground hover:text-primary">
                       nloaiza@sportsacademy.co
                     </a>
                   </div>
@@ -179,27 +198,18 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Nombre Completo *</Label>
-                <Input
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, name: e.target.value }))
-                  }
-                  required
-                />
+                <Input id="name" value={formData.name} onChange={e => setFormData(prev => ({
+                ...prev,
+                name: e.target.value
+              }))} required />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="email">Email *</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, email: e.target.value }))
-                  }
-                  required
-                />
+                <Input id="email" type="email" value={formData.email} onChange={e => setFormData(prev => ({
+                ...prev,
+                email: e.target.value
+              }))} required />
               </div>
 
               <div className="space-y-2">
@@ -209,14 +219,12 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                     <SelectValue placeholder="Selecciona tu país" />
                   </SelectTrigger>
                   <SelectContent>
-                    {countries.map((country) => (
-                      <SelectItem key={country.code} value={country.code}>
+                    {countries.map(country => <SelectItem key={country.code} value={country.code}>
                         <div className="flex items-center gap-2">
                           <span>{country.flag}</span>
                           <span>{country.name}</span>
                         </div>
-                      </SelectItem>
-                    ))}
+                      </SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
@@ -225,39 +233,24 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                 <Label htmlFor="phone">Teléfono</Label>
                 <div className="flex gap-2">
                   <div className="w-24">
-                    <Input
-                      value={formData.phoneCode}
-                      placeholder="+57"
-                      readOnly={formData.country !== "OTHER"}
-                      onChange={(e) =>
-                        formData.country === "OTHER" &&
-                        setFormData((prev) => ({ ...prev, phoneCode: e.target.value }))
-                      }
-                    />
+                    <Input value={formData.phoneCode} placeholder="+57" readOnly={formData.country !== "OTHER"} onChange={e => formData.country === "OTHER" && setFormData(prev => ({
+                    ...prev,
+                    phoneCode: e.target.value
+                  }))} />
                   </div>
-                  <Input
-                    id="phone"
-                    value={formData.phone}
-                    onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, phone: e.target.value }))
-                    }
-                    placeholder="Número de teléfono"
-                  />
+                  <Input id="phone" value={formData.phone} onChange={e => setFormData(prev => ({
+                  ...prev,
+                  phone: e.target.value
+                }))} placeholder="Número de teléfono" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="message">Mensaje *</Label>
-                <Textarea
-                  id="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, message: e.target.value }))
-                  }
-                  placeholder="Cuéntanos más sobre tu consulta..."
-                  required
-                />
+                <Textarea id="message" rows={4} value={formData.message} onChange={e => setFormData(prev => ({
+                ...prev,
+                message: e.target.value
+              }))} placeholder="Cuéntanos más sobre tu consulta..." required />
               </div>
 
               <div className="flex gap-3 pt-4">
@@ -272,13 +265,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
           </div>
         </div>
 
-        <div className="mt-6 p-4 bg-muted rounded-lg">
-          <p className="text-sm text-muted-foreground text-center">
-            Al enviar este formulario, recibirás una respuesta en tu email dentro de las próximas 24 horas.
-            Para consultas urgentes, contáctanos directamente por WhatsApp.
-          </p>
-        </div>
+        
       </DialogContent>
-    </Dialog>
-  );
+    </Dialog>;
 };
