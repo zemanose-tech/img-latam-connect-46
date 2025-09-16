@@ -62,9 +62,9 @@ const SportsCarouselSection = () => {
 
       <div className="max-w-6xl mx-auto">
         <Carousel className="w-full">
-          <CarouselContent className="-ml-2 md:-ml-4">
+          <CarouselContent className="-ml-1 sm:-ml-2 md:-ml-4">
             {featuredSports.map((sport) => (
-              <CarouselItem key={sport.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={sport.id} className="pl-1 sm:pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
                 <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300">
                   <div className="relative">
                     <img 
@@ -82,8 +82,8 @@ const SportsCarouselSection = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden md:flex" />
-          <CarouselNext className="hidden md:flex" />
+          <CarouselPrevious className="hidden sm:flex" />
+          <CarouselNext className="hidden sm:flex" />
         </Carousel>
       </div>
 

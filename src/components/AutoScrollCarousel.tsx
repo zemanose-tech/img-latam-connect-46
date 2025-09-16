@@ -14,7 +14,7 @@ interface AutoScrollCarouselProps {
 
 const AutoScrollCarousel = ({ 
   images, 
-  height = "h-72", 
+  height = "h-48 sm:h-64 md:h-72 lg:h-80", 
   delay = 2500 
 }: AutoScrollCarouselProps) => {
   const plugin = useRef(
@@ -41,7 +41,7 @@ const AutoScrollCarousel = ({
                 <img 
                   src={image.image} 
                   alt={image.alt || `Image ${image.id}`}
-                  className="h-full w-auto object-contain filter brightness-95 saturate-100 contrast-105 transition-transform duration-500 ease-in-out" 
+                  className="h-full w-full sm:w-auto object-cover sm:object-contain filter brightness-95 saturate-100 contrast-105 transition-transform duration-500 ease-in-out" 
                   loading="lazy"
                 />
               </div>

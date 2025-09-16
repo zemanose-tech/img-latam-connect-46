@@ -20,17 +20,17 @@ const SportImageCarousel = ({ sportName }: SportImageCarouselProps) => {
         <CarouselContent>
           {carouselImages.map((image) => (
             <CarouselItem key={image.id}>
-              <div className="relative h-96 bg-gray-400 rounded-lg overflow-hidden">
+              <div className="relative h-64 sm:h-80 md:h-96 bg-gray-400 rounded-lg overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
-                    <div className="text-6xl mb-4">🏟️</div>
-                    <p className="text-lg font-medium">{image.label}</p>
-                    <p className="text-sm opacity-75">{sportName}</p>
+                    <div className="text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-4">🏟️</div>
+                    <p className="text-sm sm:text-base md:text-lg font-medium">{image.label}</p>
+                    <p className="text-xs sm:text-sm opacity-75">{sportName}</p>
                   </div>
                 </div>
                 {/* Sport name overlay in top-left corner */}
-                <div className="absolute top-4 left-4 bg-black/70 text-white px-4 py-2 rounded-lg">
-                  <span className="font-bold text-sm">{sportName.toUpperCase()}</span>
+                <div className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-black/70 text-white px-2 sm:px-4 py-1 sm:py-2 rounded-lg">
+                  <span className="font-bold text-xs sm:text-sm">{sportName.toUpperCase()}</span>
                 </div>
               </div>
             </CarouselItem>
