@@ -6,20 +6,12 @@ import { Button } from "@/components/ui/button";
 import { InquiryModal } from "@/components/InquiryModal";
 import AutoScrollCarousel from "@/components/AutoScrollCarousel";
 
-// Import carousel images
-import image1 from "@/assets/adults-facilities.jpg";
-import image2 from "@/assets/facilities.jpg";
-import image3 from "@/assets/tennis-facilities.jpg";
-import image4 from "@/assets/basketball-facilities.jpg";
-import image5 from "@/assets/golf-facilities.jpg";
-
-const carouselImages = [
-  { id: 1, image: image1, alt: "Performance Facilities" },
-  { id: 2, image: image2, alt: "General Facilities" },
-  { id: 3, image: image3, alt: "Tennis Facilities" },
-  { id: 4, image: image4, alt: "Basketball Facilities" },
-  { id: 5, image: image5, alt: "Golf Facilities" }
-];
+// Golf carousel images (17 images)
+const carouselImages = Array.from({ length: 17 }, (_, i) => ({
+  id: i + 1,
+  image: `/carousel_images/golf_carousel/${i + 1}.jpg`,
+  alt: `Instalaciones de Golf ${i + 1}`
+}));
 
 const AdultPrograms = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
