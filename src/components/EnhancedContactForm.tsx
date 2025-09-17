@@ -75,25 +75,18 @@ const EnhancedContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
   
-    const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
-    const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
-  
-    const fallbackMessage = `
-  Nombre: ${formData.firstName} ${formData.lastName}
-  Email: ${formData.email}
-  Teléfono: ${formData.phone || "-"}
-  País: ${formData.country || "-"}
-  Edad: ${formData.age || "-"}
-  Deportes: ${formData.sports.join(", ") || "-"}
-  Programa: ${formData.programType || "-"}
-  Nivel: ${formData.experience || "-"}
-  Presupuesto: ${formData.budget || "-"}
-  Inicio deseado: ${formData.startDate || "-"}
-  Newsletter: ${formData.newsletter ? "Sí" : "No"}
-  `.trim();
-  
     try {
-      const res = await fetch(`${SUPABASE_URL}/functions/v1/send-inquiry-email`, {
+      // Get environment variables (make sure you have them in .env with VITE_ prefix)
+      const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
+      const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
+  
+      // Build the full URL safely (avoids localhost:8080 issue)
+      const url = new URL("/functions/v1/send-inquiry-email", SUPABASE_URL).toString();
+  
+      // Log for sanity check in browser console
+      console.log("POSTing to:", url);
+  
+      const res = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -104,20 +97,24 @@ const EnhancedContactForm = () => {
           name: `${formData.firstName} ${formData.lastName}`.trim(),
           email: formData.email,
           country: formData.country || "-",
-          phoneCode: "",
+          phoneCode: "", // optional, adjust if you add phoneCode input
           phone: formData.phone || "-",
-          message: formData.message?.trim() || fallbackMessage,
+          message: formData.message?.trim() || "(sin mensaje)",
           inquiryType: formData.programType || "General",
         }),
       });
   
-      if (!res.ok) throw new Error(await res.text());
+      if (!res.ok) {
+        const error = await res.text();
+        throw new Error(error);
+      }
   
       toast({
-        title: "¡Solicitud enviada!",
+        title: "¡Solicitud Enviada!",
         description: "Nuestro representante te contactará pronto.",
       });
   
+      // Reset form
       setFormData({
         firstName: "",
         lastName: "",
@@ -134,8 +131,8 @@ const EnhancedContactForm = () => {
         parentConsent: false,
         newsletter: true,
       });
-    } catch (err) {
-      console.error("Email error:", err);
+    } catch (error) {
+      console.error("Email error:", error);
       toast({
         title: "Error",
         description: "No se pudo enviar tu solicitud. Intenta de nuevo.",
