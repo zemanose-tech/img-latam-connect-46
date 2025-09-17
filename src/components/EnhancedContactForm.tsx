@@ -76,37 +76,62 @@ const EnhancedContactForm = () => {
     setIsSubmitting(true);
   
     try {
-      // Get environment variables (make sure you have them in .env with VITE_ prefix)
-      const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
-      const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
+      // Read Vite envs (set these in Lovable -> Settings -> Environment Variables)
+      const RAW_URL = (import.meta.env.VITE_SUPABASE_URL as string) || "";
+      const RAW_KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || "";
   
-      // Build the full URL safely (avoids localhost:8080 issue)
+      // Fallbacks so the request still works inside Lovable's in-editor preview
+      const SUPABASE_URL =
+        RAW_URL || "https://jhtwrxhorlzwjynwxxny.supabase.co";
+      const SUPABASE_ANON_KEY = RAW_KEY;
+  
+      if (!SUPABASE_URL.includes("supabase.co")) {
+        throw new Error("SUPABASE_URL missing or invalid");
+      }
+      if (!SUPABASE_ANON_KEY) {
+        throw new Error("SUPABASE_ANON_KEY missing");
+      }
+  
+      // Always build an ABSOLUTE URL (prevents /functions... hitting lovable.app)
       const url = new URL("/functions/v1/send-inquiry-email", SUPABASE_URL).toString();
-
-      // Log for sanity check in browser console
       console.log("POSTing to:", url);
+  
+      // Build a readable fallback message if textarea is empty
+      const fallbackMessage = `
+  Nombre: ${`${formData.firstName} ${formData.lastName}`.trim()}
+  Email: ${formData.email}
+  Teléfono: ${formData.phone || "-"}
+  País: ${formData.country || "-"}
+  Edad: ${formData.age || "-"}
+  Deportes: ${formData.sports.join(", ") || "-"}
+  Programa: ${formData.programType || "-"}
+  Nivel: ${formData.experience || "-"}
+  Presupuesto: ${formData.budget || "-"}
+  Inicio deseado: ${formData.startDate || "-"}
+  Newsletter: ${formData.newsletter ? "Sí" : "No"}
+  `.trim();
   
       const res = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
-          "apikey": SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          apikey: SUPABASE_ANON_KEY,
         },
         body: JSON.stringify({
           name: `${formData.firstName} ${formData.lastName}`.trim(),
           email: formData.email,
           country: formData.country || "-",
-          phoneCode: "", // optional, adjust if you add phoneCode input
+          phoneCode: "", // fill if you add a phone code input
           phone: formData.phone || "-",
-          message: formData.message?.trim() || "(sin mensaje)",
+          message: (formData.message || "").trim() || fallbackMessage,
           inquiryType: formData.programType || "General",
         }),
       });
   
       if (!res.ok) {
-        const error = await res.text();
-        throw new Error(error);
+        const text = await res.text();
+        throw new Error(text || `HTTP ${res.status}`);
       }
   
       toast({
@@ -131,8 +156,8 @@ const EnhancedContactForm = () => {
         parentConsent: false,
         newsletter: true,
       });
-    } catch (error) {
-      console.error("Email error:", error);
+    } catch (err) {
+      console.error("Email error:", err);
       toast({
         title: "Error",
         description: "No se pudo enviar tu solicitud. Intenta de nuevo.",
