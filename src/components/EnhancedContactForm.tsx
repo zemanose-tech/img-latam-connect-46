@@ -75,27 +75,42 @@ const EnhancedContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
   
+    // Build a readable message if the textarea is empty
+    const fallbackMessage = `
+  Nombre: ${formData.firstName} ${formData.lastName}
+  Email: ${formData.email}
+  Teléfono: ${formData.phone || "-"}
+  País: ${formData.country || "-"}
+  Edad: ${formData.age || "-"}
+  Deportes: ${formData.sports.join(", ") || "-"}
+  Programa: ${formData.programType || "-"}
+  Nivel: ${formData.experience || "-"}
+  Presupuesto: ${formData.budget || "-"}
+  Inicio deseado: ${formData.startDate || "-"}
+  Newsletter: ${formData.newsletter ? "Sí" : "No"}
+  `.trim();
+  
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/resend-email`,
+        // ✅ use your deployed function name
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/send-inquiry-email`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, // required if not public
+            // ✅ BOTH headers: Supabase requires Authorization (Bearer anon key)
+            "Authorization": `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+            "apikey": process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string,
           },
           body: JSON.stringify({
-            fullName: `${formData.firstName} ${formData.lastName}`,
+            // ✅ your function requires `name`, `email`, `message`
+            name: `${formData.firstName} ${formData.lastName}`.trim(),
             email: formData.email,
-            phone: formData.phone,
-            country: formData.country,
-            age: formData.age,
-            sports: formData.sports.join(", "),
-            programType: formData.programType,
-            experience: formData.experience,
-            message: formData.message,
-            budget: formData.budget,
-            startDate: formData.startDate,
+            country: formData.country || "-",
+            phoneCode: "", // optional: fill if you collect it
+            phone: formData.phone || "-",
+            message: formData.message?.trim() || fallbackMessage,
+            inquiryType: formData.programType || "General",
           }),
         }
       );
@@ -106,7 +121,7 @@ const EnhancedContactForm = () => {
       }
   
       toast({
-        title: "¡Solicitud Enviada!",
+        title: "¡Solicitud enviada!",
         description: "Nuestro representante te contactará pronto.",
       });
   
