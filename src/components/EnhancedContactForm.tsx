@@ -75,7 +75,9 @@ const EnhancedContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
   
-    // Build a readable message if the textarea is empty
+    const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL as string;
+    const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
+  
     const fallbackMessage = `
   Nombre: ${formData.firstName} ${formData.lastName}
   Email: ${formData.email}
@@ -91,41 +93,31 @@ const EnhancedContactForm = () => {
   `.trim();
   
     try {
-      const res = await fetch(
-        // ✅ use your deployed function name
-        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/send-inquiry-email`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            // ✅ BOTH headers: Supabase requires Authorization (Bearer anon key)
-            "Authorization": `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
-            "apikey": process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string,
-          },
-          body: JSON.stringify({
-            // ✅ your function requires `name`, `email`, `message`
-            name: `${formData.firstName} ${formData.lastName}`.trim(),
-            email: formData.email,
-            country: formData.country || "-",
-            phoneCode: "", // optional: fill if you collect it
-            phone: formData.phone || "-",
-            message: formData.message?.trim() || fallbackMessage,
-            inquiryType: formData.programType || "General",
-          }),
-        }
-      );
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/send-inquiry-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+          "apikey": SUPABASE_ANON_KEY,
+        },
+        body: JSON.stringify({
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
+          email: formData.email,
+          country: formData.country || "-",
+          phoneCode: "",
+          phone: formData.phone || "-",
+          message: formData.message?.trim() || fallbackMessage,
+          inquiryType: formData.programType || "General",
+        }),
+      });
   
-      if (!res.ok) {
-        const error = await res.text();
-        throw new Error(error);
-      }
+      if (!res.ok) throw new Error(await res.text());
   
       toast({
         title: "¡Solicitud enviada!",
         description: "Nuestro representante te contactará pronto.",
       });
   
-      // Reset form
       setFormData({
         firstName: "",
         lastName: "",
@@ -142,8 +134,8 @@ const EnhancedContactForm = () => {
         parentConsent: false,
         newsletter: true,
       });
-    } catch (error) {
-      console.error("Email error:", error);
+    } catch (err) {
+      console.error("Email error:", err);
       toast({
         title: "Error",
         description: "No se pudo enviar tu solicitud. Intenta de nuevo.",
