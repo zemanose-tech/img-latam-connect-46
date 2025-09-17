@@ -81,8 +81,9 @@ const EnhancedContactForm = () => {
       const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
   
       // Build the full URL safely (avoids localhost:8080 issue)
-      const url = new URL("/functions/v1/send-inquiry-email", SUPABASE_URL).toString();
-  
+      //const url = new URL("/functions/v1/send-inquiry-email", SUPABASE_URL).toString();
+      const url = "https://jhtwrxhorlzwjynwxxny.supabase.co/functions/v1/send-inquiry-email";
+
       // Log for sanity check in browser console
       console.log("POSTing to:", url);
   
