@@ -53,10 +53,13 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
     e.preventDefault();
 
     try {
-      // ⛳️ HARD-CODED Supabase Edge Function URL (debug step)
-      const url = "https://jhtwrxhorlzwjynwxxny.supabase.co/functions/v1/send-inquiry-email" as const;
+      // 👇 Build URL in pieces so nothing rewrites it
+      const base =
+        ["https", "://", "jhtwrxhorlzwjynwxxny", ".supabase", ".co"].join("");
+      const path = "/functions/v1/send-inquiry-email";
+      const url = base + path;
 
-      const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
+      const ANON = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
 
       console.log("[InquiryModal] POSTing to:", url);
       alert(`[InquiryModal] POSTing to:\n${url}`);
@@ -66,10 +69,12 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
 
       const response = await fetch(url, {
         method: "POST",
+        mode: "cors",
+        credentials: "omit",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          apikey: SUPABASE_ANON_KEY,
+          "Authorization": `Bearer ${ANON}`,
+          "apikey": ANON,
         },
         body: JSON.stringify({
           name: formData.name,
@@ -113,14 +118,13 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
         </DialogHeader>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Contact info (unchanged) */}
+          {/* … keep your existing UI content unchanged … */}
           <div className="space-y-6">
             <div className="bg-muted rounded-lg p-6">
               <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
                 <Phone className="w-5 h-5" />
                 Información de Contacto
               </h3>
-
               <div className="space-y-4">
                 <div className="flex items-center gap-3 p-3 bg-background rounded-md">
                   <MessageSquare className="w-5 h-5 text-green-600" />
@@ -131,7 +135,6 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                     </a>
                   </div>
                 </div>
-
                 <div className="flex items-center gap-3 p-3 bg-background rounded-md">
                   <Mail className="w-5 h-5 text-blue-600" />
                   <div>
@@ -161,9 +164,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
               <div className="space-y-2">
                 <Label htmlFor="country">País *</Label>
                 <Select value={formData.country} onValueChange={handleCountryChange} required>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Selecciona tu país" />
-                  </SelectTrigger>
+                  <SelectTrigger><SelectValue placeholder="Selecciona tu país" /></SelectTrigger>
                   <SelectContent>
                     {countries.map((country) => (
                       <SelectItem key={country.code} value={country.code}>
