@@ -35,12 +35,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
   inquiryType = "Consulta General",
 }) => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    country: "",
-    phoneCode: "",
-    phone: "",
-    message: "",
+    name: "", email: "", country: "", phoneCode: "", phone: "", message: "",
   });
 
   const { toast } = useToast();
@@ -58,24 +53,13 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
     e.preventDefault();
 
     try {
-      // Read envs (Vite). In Lovable, set them in Project Settings → Environment Variables.
-      const RAW_URL = (import.meta.env.VITE_SUPABASE_URL as string) || "";
-      const RAW_KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) || "";
+      // ⛳️ HARD-CODED Supabase Edge Function URL (debug step)
+      const url = "https://jhtwrxhorlzwjynwxxny.supabase.co/functions/v1/send-inquiry-email" as const;
 
-      // Fallback so preview-in-editor still works
-      const SUPABASE_URL = RAW_URL || "https://jhtwrxhorlzwjynwxxny.supabase.co";
-      const SUPABASE_ANON_KEY = RAW_KEY;
+      const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
 
-      if (!SUPABASE_URL.includes("supabase.co")) {
-        throw new Error("SUPABASE_URL missing or invalid");
-      }
-      if (!SUPABASE_ANON_KEY) {
-        throw new Error("SUPABASE_ANON_KEY missing");
-      }
-
-      // ✅ Always build an ABSOLUTE URL to Supabase (avoid lovable.app origin)
-      const url = new URL("/functions/v1/send-inquiry-email", SUPABASE_URL).toString();
-      console.log("POSTing to (InquiryModal):", url);
+      console.log("[InquiryModal] POSTing to:", url);
+      alert(`[InquiryModal] POSTing to:\n${url}`);
 
       const selectedCountryName =
         countries.find((c) => c.code === formData.country)?.name || "Otro país";
@@ -103,27 +87,15 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
         throw new Error(text || `HTTP ${response.status}`);
       }
 
-      toast({
-        title: "Consulta enviada",
-        description: "Nos pondremos en contacto contigo pronto.",
-      });
+      toast({ title: "Consulta enviada", description: "Nos pondremos en contacto contigo pronto." });
 
-      // Reset form and close modal
-      setFormData({
-        name: "",
-        email: "",
-        country: "",
-        phoneCode: "",
-        phone: "",
-        message: "",
-      });
+      setFormData({ name: "", email: "", country: "", phoneCode: "", phone: "", message: "" });
       onClose();
     } catch (error) {
       console.error("Error sending inquiry:", error);
       toast({
         title: "Error",
-        description:
-          "Hubo un problema al enviar tu consulta. Por favor, inténtalo de nuevo.",
+        description: "Hubo un problema al enviar tu consulta. Por favor, inténtalo de nuevo.",
         variant: "destructive",
       });
     }
@@ -141,7 +113,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
         </DialogHeader>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Contact Information */}
+          {/* Contact info (unchanged) */}
           <div className="space-y-6">
             <div className="bg-muted rounded-lg p-6">
               <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
@@ -154,12 +126,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                   <MessageSquare className="w-5 h-5 text-green-600" />
                   <div>
                     <p className="font-medium">WhatsApp</p>
-                    <a
-                      href="https://wa.me/573001234567"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
+                    <a href="https://wa.me/573001234567" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary">
                       +57 300 123 4567
                     </a>
                   </div>
@@ -169,10 +136,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                   <Mail className="w-5 h-5 text-blue-600" />
                   <div>
                     <p className="font-medium">Email</p>
-                    <a
-                      href="mailto:nloaiza@sportsacademy.co"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
+                    <a href="mailto:nloaiza@sportsacademy.co" className="text-sm text-muted-foreground hover:text-primary">
                       nloaiza@sportsacademy.co
                     </a>
                   </div>
@@ -181,32 +145,17 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
             </div>
           </div>
 
-          {/* Inquiry Form */}
+          {/* Form */}
           <div>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Nombre Completo *</Label>
-                <Input
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, name: e.target.value }))
-                  }
-                  required
-                />
+                <Input id="name" value={formData.name} onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))} required />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="email">Email *</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, email: e.target.value }))
-                  }
-                  required
-                />
+                <Input id="email" type="email" value={formData.email} onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))} required />
               </div>
 
               <div className="space-y-2">
@@ -238,42 +187,22 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                       readOnly={formData.country !== "OTHER"}
                       onChange={(e) =>
                         formData.country === "OTHER" &&
-                        setFormData((prev) => ({ ...prev, phoneCode: e.target.value }))
+                        setFormData((p) => ({ ...p, phoneCode: e.target.value }))
                       }
                     />
                   </div>
-                  <Input
-                    id="phone"
-                    value={formData.phone}
-                    onChange={(e) =>
-                      setFormData((prev) => ({ ...prev, phone: e.target.value }))
-                    }
-                    placeholder="Número de teléfono"
-                  />
+                  <Input id="phone" value={formData.phone} onChange={(e) => setFormData((p) => ({ ...p, phone: e.target.value }))} placeholder="Número de teléfono" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="message">Mensaje *</Label>
-                <Textarea
-                  id="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, message: e.target.value }))
-                  }
-                  placeholder="Cuéntanos más sobre tu consulta..."
-                  required
-                />
+                <Textarea id="message" rows={4} value={formData.message} onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))} placeholder="Cuéntanos más sobre tu consulta..." required />
               </div>
 
               <div className="flex gap-3 pt-4">
-                <Button type="button" variant="outline" onClick={onClose} className="flex-1">
-                  Cancelar
-                </Button>
-                <Button type="submit" className="flex-1">
-                  Enviar Consulta
-                </Button>
+                <Button type="button" variant="outline" onClick={onClose} className="flex-1">Cancelar</Button>
+                <Button type="submit" className="flex-1">Enviar Consulta</Button>
               </div>
             </form>
           </div>
