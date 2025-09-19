@@ -10,7 +10,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Badge } from "@/components/ui/badge";
 import { Phone, Mail, MapPin, Send, Star, Trophy, Users } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/lib/supabaseClient";
 
 const sportsOptions = [
   { id: "tennis", name: "Tenis" },
@@ -24,7 +23,12 @@ const sportsOptions = [
   { id: "wrestling", name: "Lucha" }
 ];
 
-const ageGroups = ["10-12 años", "13-15 años", "16-18 años", "19+ años"];
+const ageGroups = [
+  "10-12 años",
+  "13-15 años", 
+  "16-18 años",
+  "19+ años"
+];
 
 const programTypes = [
   { id: "boarding", name: "Programa de Internado", description: "Año académico completo" },
@@ -35,11 +39,22 @@ const programTypes = [
 
 const EnhancedContactForm = () => {
   const [formData, setFormData] = useState({
-    firstName: "", lastName: "", email: "", phone: "", country: "",
-    age: "", sports: [] as string[], programType: "", experience: "",
-    message: "", budget: "", startDate: "", parentConsent: false, newsletter: true
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    country: "",
+    age: "",
+    sports: [] as string[],
+    programType: "",
+    experience: "",
+    message: "",
+    budget: "",
+    startDate: "",
+    parentConsent: false,
+    newsletter: true
   });
-
+  
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -50,7 +65,9 @@ const EnhancedContactForm = () => {
   const handleSportChange = (sportId: string, checked: boolean) => {
     setFormData(prev => ({
       ...prev,
-      sports: checked ? [...prev.sports, sportId] : prev.sports.filter(s => s !== sportId)
+      sports: checked 
+        ? [...prev.sports, sportId]
+        : prev.sports.filter(s => s !== sportId)
     }));
   };
 
@@ -58,56 +75,33 @@ const EnhancedContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    try {
-      const fallbackMessage = `
-Nombre: ${`${formData.firstName} ${formData.lastName}`.trim()}
-Email: ${formData.email}
-Teléfono: ${formData.phone || "-"}
-País: ${formData.country || "-"}
-Edad: ${formData.age || "-"}
-Deportes: ${formData.sports.join(", ") || "-"}
-Programa: ${formData.programType || "-"}
-Nivel: ${formData.experience || "-"}
-Presupuesto: ${formData.budget || "-"}
-Inicio deseado: ${formData.startDate || "-"}
-Newsletter: ${formData.newsletter ? "Sí" : "No"}
-`.trim();
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-      // 💡 Use Supabase SDK to invoke the function (no URL rewrite)
-      const { error } = await supabase.functions.invoke("send-inquiry-email", {
-        body: {
-          name: `${formData.firstName} ${formData.lastName}`.trim(),
-          email: formData.email,
-          country: formData.country || "-",
-          phoneCode: "",
-          phone: formData.phone || "-",
-          message: (formData.message || "").trim() || fallbackMessage,
-          inquiryType: formData.programType || "General",
-        },
-      });
+    toast({
+      title: "¡Solicitud Enviada!",
+      description: "Nuestro representante te contactará en las próximas 24 horas.",
+    });
 
-      if (error) throw error;
-
-      toast({
-        title: "¡Solicitud Enviada!",
-        description: "Nuestro representante te contactará pronto.",
-      });
-
-      setFormData({
-        firstName: "", lastName: "", email: "", phone: "", country: "",
-        age: "", sports: [], programType: "", experience: "",
-        message: "", budget: "", startDate: "", parentConsent: false, newsletter: true
-      });
-    } catch (error) {
-      console.error("Email error:", error);
-      toast({
-        title: "Error",
-        description: "No se pudo enviar tu solicitud. Intenta de nuevo.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    setIsSubmitting(false);
+    
+    // Reset form
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      country: "",
+      age: "",
+      sports: [],
+      programType: "",
+      experience: "",
+      message: "",
+      budget: "",
+      startDate: "",
+      parentConsent: false,
+      newsletter: true
+    });
   };
 
   return (
@@ -410,3 +404,5 @@ Newsletter: ${formData.newsletter ? "Sí" : "No"}
     </div>
   );
 };
+
+export default EnhancedContactForm;
