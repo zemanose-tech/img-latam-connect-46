@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Phone, Mail, MessageSquare } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/lib/supabaseClient";
 
 interface InquiryModalProps {
   isOpen: boolean;
@@ -37,7 +38,6 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
   const [formData, setFormData] = useState({
     name: "", email: "", country: "", phoneCode: "", phone: "", message: "",
   });
-
   const { toast } = useToast();
 
   const handleCountryChange = (countryCode: string) => {
@@ -51,27 +51,13 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
-      // ⛳️ HARD-CODED Supabase Edge Function URL (debug step)
-      const url = "https://jhtwrxhorlzwjynwxxny.supabase.co/functions/v1/send-inquiry-email" as const;
-
-      const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
-
-      console.log("[InquiryModal] POSTing to:", url);
-      alert(`[InquiryModal] POSTing to:\n${url}`);
-
       const selectedCountryName =
         countries.find((c) => c.code === formData.country)?.name || "Otro país";
 
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-          apikey: SUPABASE_ANON_KEY,
-        },
-        body: JSON.stringify({
+      // 💡 Call the Edge Function via Supabase SDK (no URL rewriting)
+      const { error } = await supabase.functions.invoke("send-inquiry-email", {
+        body: {
           name: formData.name,
           email: formData.email,
           country: selectedCountryName,
@@ -79,20 +65,20 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
           phone: formData.phone,
           message: formData.message,
           inquiryType,
-        }),
+        },
       });
 
-      if (!response.ok) {
-        const text = await response.text();
-        throw new Error(text || `HTTP ${response.status}`);
-      }
+      if (error) throw error;
 
-      toast({ title: "Consulta enviada", description: "Nos pondremos en contacto contigo pronto." });
+      toast({
+        title: "Consulta enviada",
+        description: "Nos pondremos en contacto contigo pronto.",
+      });
 
       setFormData({ name: "", email: "", country: "", phoneCode: "", phone: "", message: "" });
       onClose();
-    } catch (error) {
-      console.error("Error sending inquiry:", error);
+    } catch (err) {
+      console.error("Error sending inquiry:", err);
       toast({
         title: "Error",
         description: "Hubo un problema al enviar tu consulta. Por favor, inténtalo de nuevo.",
@@ -113,7 +99,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
         </DialogHeader>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Contact info (unchanged) */}
+          {/* Contact Information */}
           <div className="space-y-6">
             <div className="bg-muted rounded-lg p-6">
               <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
@@ -126,7 +112,12 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                   <MessageSquare className="w-5 h-5 text-green-600" />
                   <div>
                     <p className="font-medium">WhatsApp</p>
-                    <a href="https://wa.me/573001234567" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-primary">
+                    <a
+                      href="https://wa.me/573001234567"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted-foreground hover:text-primary"
+                    >
                       +57 300 123 4567
                     </a>
                   </div>
@@ -136,7 +127,10 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                   <Mail className="w-5 h-5 text-blue-600" />
                   <div>
                     <p className="font-medium">Email</p>
-                    <a href="mailto:nloaiza@sportsacademy.co" className="text-sm text-muted-foreground hover:text-primary">
+                    <a
+                      href="mailto:nloaiza@sportsacademy.co"
+                      className="text-sm text-muted-foreground hover:text-primary"
+                    >
                       nloaiza@sportsacademy.co
                     </a>
                   </div>
@@ -145,17 +139,28 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
             </div>
           </div>
 
-          {/* Form */}
+          {/* Inquiry Form */}
           <div>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="name">Nombre Completo *</Label>
-                <Input id="name" value={formData.name} onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))} required />
+                <Input
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
+                  required
+                />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="email">Email *</Label>
-                <Input id="email" type="email" value={formData.email} onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))} required />
+                <Input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
+                  required
+                />
               </div>
 
               <div className="space-y-2">
@@ -191,18 +196,34 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                       }
                     />
                   </div>
-                  <Input id="phone" value={formData.phone} onChange={(e) => setFormData((p) => ({ ...p, phone: e.target.value }))} placeholder="Número de teléfono" />
+                  <Input
+                    id="phone"
+                    value={formData.phone}
+                    onChange={(e) => setFormData((p) => ({ ...p, phone: e.target.value }))}
+                    placeholder="Número de teléfono"
+                  />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="message">Mensaje *</Label>
-                <Textarea id="message" rows={4} value={formData.message} onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))} placeholder="Cuéntanos más sobre tu consulta..." required />
+                <Textarea
+                  id="message"
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
+                  placeholder="Cuéntanos más sobre tu consulta..."
+                  required
+                />
               </div>
 
               <div className="flex gap-3 pt-4">
-                <Button type="button" variant="outline" onClick={onClose} className="flex-1">Cancelar</Button>
-                <Button type="submit" className="flex-1">Enviar Consulta</Button>
+                <Button type="button" variant="outline" onClick={onClose} className="flex-1">
+                  Cancelar
+                </Button>
+                <Button type="submit" className="flex-1">
+                  Enviar Consulta
+                </Button>
               </div>
             </form>
           </div>
